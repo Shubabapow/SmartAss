@@ -12,7 +12,6 @@ class LoginFrame extends JFrame implements ActionListener {
     JPasswordField passwordField = new JPasswordField();
     JButton loginButton = new JButton("LOGIN");
     JButton registerButton = new JButton("Register");
-    // JButton resetButton = new JButton("RESET");
     JCheckBox showPassword = new JCheckBox("Show Password");
 
     // inside your class constructor/method
@@ -40,7 +39,6 @@ class LoginFrame extends JFrame implements ActionListener {
         showPassword.setBounds(150, 400, 150, 30);
         loginButton.setBounds(150, 450, 100, 30);
         registerButton.setBounds(150, 500, 100, 30);
-        // resetButton.setBounds(200, 300, 100, 30);
         jlPic.setBounds(20, 25, 325, 300);
 
     }
@@ -58,7 +56,6 @@ class LoginFrame extends JFrame implements ActionListener {
 
     public void addActionEvent() {
         loginButton.addActionListener(this);
-        // resetButton.addActionListener(this);
         showPassword.addActionListener(this);
     }
 
@@ -77,11 +74,7 @@ class LoginFrame extends JFrame implements ActionListener {
             }
 
         }
-        // // Coding Part of RESET button
-        // if (e.getSource() == resetButton) {
-        // userTextField.setText("");
-        // passwordField.setText("");
-        // }
+
         // Coding Part of showPassword JCheckBox
         if (e.getSource() == showPassword)
 
