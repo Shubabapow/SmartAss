@@ -1,9 +1,11 @@
+package ht4.AppPackage;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-class LoginFrame extends JFrame implements ActionListener {
+public class LoginFrame extends JFrame implements ActionListener {
 
     Container container = getContentPane();
     JLabel userLabel = new JLabel("USERNAME:");
