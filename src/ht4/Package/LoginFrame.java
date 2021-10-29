@@ -1,4 +1,4 @@
-package ht4.AppPackage;
+package ht4.Package;
 
 import javax.swing.*;
 import java.awt.*;
@@ -104,3 +104,4 @@ class Login {
     }
 
 }
+
