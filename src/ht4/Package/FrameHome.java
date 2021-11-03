@@ -5,7 +5,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class FrameHome extends JFrame implements ActionListener {
+public class FrameHome extends LoginFrame implements ActionListener {
 
     Container containerHome = getContentPane();
     private JButton homeButton = new JButton("Home");

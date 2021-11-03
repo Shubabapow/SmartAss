@@ -6,8 +6,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class LoginFrame extends JFrame implements ActionListener {
+    //instantiating all of our elements
     JFrame frame = new JFrame();
-    //Container frame = getContentPane();
     JLabel userLabel = new JLabel("USERNAME:");
     JLabel passwordLabel = new JLabel("PASSWORD:");
     JTextField userTextField = new JTextField();
@@ -16,11 +16,10 @@ public class LoginFrame extends JFrame implements ActionListener {
     JButton registerButton = new JButton("Register");
     JCheckBox showPassword = new JCheckBox("Show Password");
 
-    // inside your class constructor/method
-    JPanel panel = new JPanel();
+    //Grabbing image from folder and making it into a JLabel
     ImageIcon img = new ImageIcon(new String("./Resources/healtech1-removebg-preview.png"));
     JLabel jlPic = new JLabel(img);
-
+    //Creating the constructor and setting the size of the JFrame along with calling our helper methods
     LoginFrame() {
 
         frame.setTitle("SmartAss");
@@ -34,11 +33,11 @@ public class LoginFrame extends JFrame implements ActionListener {
         addLoginComponentsToContainer();
         addActionEvent();
     }
-
+    //Setting layout to null, which ends up just using the default layout
     public void setLayoutManager() {
         frame.setLayout(null);
     }
-
+    //Declares the size for the elements
     public void setLocationAndSize() {
         userLabel.setBounds(50, 325, 100, 30);
         passwordLabel.setBounds(50, 370, 100, 30);
@@ -50,7 +49,7 @@ public class LoginFrame extends JFrame implements ActionListener {
         jlPic.setBounds(20, 25, 325, 300);
 
     }
-
+    //Adds all the elements to the JFrame
     public void addLoginComponentsToContainer() {
         frame.add(userLabel);
         frame.add(passwordLabel);
@@ -61,12 +60,12 @@ public class LoginFrame extends JFrame implements ActionListener {
         frame.add(registerButton);
         frame.add(jlPic);
     }
-
+    //Adds an action listener to the buttons
     public void addActionEvent() {
         loginButton.addActionListener(this);
         showPassword.addActionListener(this);
     }
-
+    //This is to clear the JPanel
     public void changePanel(FrameHome panel) {
         getContentPane().removeAll();
         getContentPane().add(panel, BorderLayout.CENTER);
@@ -74,6 +73,9 @@ public class LoginFrame extends JFrame implements ActionListener {
         update(getGraphics());
     }
 
+    // This is the action of clicking on the login button.
+    // If the username and password are correct then it will take you to the home screen.
+    //If the login is not correct it will tell you it's an invalid login
     @Override
     public void actionPerformed(ActionEvent e) {
         // Coding Part of LOGIN button
@@ -98,7 +100,7 @@ public class LoginFrame extends JFrame implements ActionListener {
 
         }
 
-        // Coding Part of showPassword JCheckBox
+        // Coding for show password with a Jcheckbox
         if (e.getSource() == showPassword)
 
         {
@@ -112,16 +114,4 @@ public class LoginFrame extends JFrame implements ActionListener {
     }
 }
 
-//class Login {
-//    public static void main(String[] a) {
-//        LoginFrame frame = new LoginFrame();
-//        frame.setTitle("SmartAss");
-//        frame.setVisible(true);
-//        frame.setBounds(10, 10, 370, 600);
-//        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//        frame.setResizable(false);
-//
-//    }
-//
-//}
 
