@@ -6,8 +6,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class LoginFrame extends JFrame implements ActionListener {
-
-    Container container = getContentPane();
+    JFrame frame = new JFrame();
+    //Container frame = getContentPane();
     JLabel userLabel = new JLabel("USERNAME:");
     JLabel passwordLabel = new JLabel("PASSWORD:");
     JTextField userTextField = new JTextField();
@@ -22,15 +22,21 @@ public class LoginFrame extends JFrame implements ActionListener {
     JLabel jlPic = new JLabel(img);
 
     LoginFrame() {
+
+        frame.setTitle("SmartAss");
+        frame.setVisible(true);
+        frame.setBounds(10, 10, 370, 600);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setResizable(false);
+
         setLayoutManager();
         setLocationAndSize();
-        addComponentsToContainer();
+        addLoginComponentsToContainer();
         addActionEvent();
-
     }
 
     public void setLayoutManager() {
-        container.setLayout(null);
+        frame.setLayout(null);
     }
 
     public void setLocationAndSize() {
@@ -45,20 +51,27 @@ public class LoginFrame extends JFrame implements ActionListener {
 
     }
 
-    public void addComponentsToContainer() {
-        container.add(userLabel);
-        container.add(passwordLabel);
-        container.add(userTextField);
-        container.add(passwordField);
-        container.add(showPassword);
-        container.add(loginButton);
-        container.add(registerButton);
-        container.add(jlPic);
+    public void addLoginComponentsToContainer() {
+        frame.add(userLabel);
+        frame.add(passwordLabel);
+        frame.add(userTextField);
+        frame.add(passwordField);
+        frame.add(showPassword);
+        frame.add(loginButton);
+        frame.add(registerButton);
+        frame.add(jlPic);
     }
 
     public void addActionEvent() {
         loginButton.addActionListener(this);
         showPassword.addActionListener(this);
+    }
+
+    public void changePanel(FrameHome panel) {
+        getContentPane().removeAll();
+        getContentPane().add(panel, BorderLayout.CENTER);
+        getContentPane().doLayout();
+        update(getGraphics());
     }
 
     @Override
@@ -70,7 +83,15 @@ public class LoginFrame extends JFrame implements ActionListener {
             userText = userTextField.getText();
             pwdText = passwordField.getText();
             if (userText.equalsIgnoreCase("joey") && pwdText.equalsIgnoreCase("12345")) {
-                JOptionPane.showMessageDialog(this, "Login Successful");
+                //Main mainFrame = new Main();
+                frame.dispose();
+                FrameHome homeFrame = new FrameHome();
+                homeFrame.setTitle("SmartAss");
+                homeFrame.setVisible(true);
+                homeFrame.setBounds(10, 10, 370, 600);
+                homeFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                homeFrame.setResizable(false);
+
             } else {
                 JOptionPane.showMessageDialog(this, "Invalid Username or Password");
             }
@@ -89,19 +110,18 @@ public class LoginFrame extends JFrame implements ActionListener {
 
         }
     }
-
 }
 
-class Login {
-    public static void main(String[] a) {
-        LoginFrame frame = new LoginFrame();
-        frame.setTitle("SmartAss");
-        frame.setVisible(true);
-        frame.setBounds(10, 10, 370, 600);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setResizable(false);
-
-    }
-
-}
+//class Login {
+//    public static void main(String[] a) {
+//        LoginFrame frame = new LoginFrame();
+//        frame.setTitle("SmartAss");
+//        frame.setVisible(true);
+//        frame.setBounds(10, 10, 370, 600);
+//        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//        frame.setResizable(false);
+//
+//    }
+//
+//}
 
