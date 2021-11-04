@@ -19,6 +19,7 @@ public class LoginFrame extends JFrame implements ActionListener {
     //Grabbing image from folder and making it into a JLabel
     ImageIcon img = new ImageIcon(("./Resources/healtech1-removebg-preview.png"));
     JLabel jlPic = new JLabel(img);
+
     //Creating the constructor and setting the size of the JFrame along with calling our helper methods
     LoginFrame() {
 
@@ -87,11 +88,6 @@ public class LoginFrame extends JFrame implements ActionListener {
             if (userText.equalsIgnoreCase("joey") && pwdText.equalsIgnoreCase("12345")) {
                 frame.dispose();
                 FrameHome homeFrame = new FrameHome();
-//                homeFrame.setTitle("SmartAss");
-//                homeFrame.setVisible(true);
-//                homeFrame.setBounds(10, 10, 370, 600);
-//                homeFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//                homeFrame.setResizable(false);
 
             } else {
                 JOptionPane.showMessageDialog(this, "Invalid Username or Password");

@@ -6,8 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class BrowsePage extends JFrame implements ActionListener {
-
-    Container containerBrowse = getContentPane();
+    JFrame browseFrame = new JFrame();
     private JButton homeButton = new JButton("Home");
     private JButton browseButton = new JButton("Browse");
     private JButton profileButton = new JButton("Profile");
@@ -17,6 +16,12 @@ public class BrowsePage extends JFrame implements ActionListener {
     private JButton socialButton = new JButton("Social");
 
     BrowsePage() {
+        browseFrame.setTitle("SmartAss");
+        browseFrame.setBounds(10, 10, 370, 600);
+        browseFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        browseFrame.setVisible(true);
+        browseFrame.setResizable(false);
+
         setLayoutManager();
         setLocationAndSize();
         addHomeComponentsToContainer();
@@ -24,26 +29,27 @@ public class BrowsePage extends JFrame implements ActionListener {
     }
 
     public void setLayoutManager() {
-        containerBrowse.setLayout(null);
+
+        browseFrame.setLayout(null);
     }
 
     public void setLocationAndSize() {
         homeButton.setBounds(5, 510, 150, 30);
         browseButton.setBounds(205, 510, 150, 30);
-        profileButton.setBounds(205, 350, 150, 30);
-        journalButton.setBounds(205, 310, 150, 30);
-        dietButton.setBounds(205, 270, 150, 30);
-        statsButton.setBounds(205, 230, 150, 30);
-        socialButton.setBounds(205, 190, 150, 30);
+        profileButton.setBounds(100, 350, 150, 30);
+        journalButton.setBounds(100, 310, 150, 30);
+        dietButton.setBounds(100, 270, 150, 30);
+        statsButton.setBounds(100, 230, 150, 30);
+        socialButton.setBounds(100, 190, 150, 30);
     }
     public void addHomeComponentsToContainer() {
-        containerBrowse.add(homeButton);
-        containerBrowse.add(browseButton);
-        containerBrowse.add(profileButton);
-        containerBrowse.add(journalButton);
-        containerBrowse.add(dietButton);
-        containerBrowse.add(statsButton);
-        containerBrowse.add(socialButton);
+        browseFrame.add(homeButton);
+        browseFrame.add(browseButton);
+        browseFrame.add(profileButton);
+        browseFrame.add(journalButton);
+        browseFrame.add(dietButton);
+        browseFrame.add(statsButton);
+        browseFrame.add(socialButton);
     }
 
     public void addActionEvent() {
@@ -64,7 +70,14 @@ public class BrowsePage extends JFrame implements ActionListener {
     }
     @Override
     public void actionPerformed(ActionEvent e) {
-
+        if (e.getSource() == dietButton) {
+            browseFrame.dispose();
+            DietPlan dietPlan = new DietPlan();
+        }
+        if (e.getSource() == homeButton) {
+            browseFrame.dispose();
+            FrameHome home = new FrameHome();
+        }
     }
 
     public static void main(String[] args) {

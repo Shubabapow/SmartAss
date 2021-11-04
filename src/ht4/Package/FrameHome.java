@@ -11,6 +11,11 @@ public class FrameHome extends JFrame implements ActionListener {
     //Container containerHome = getContentPane();
     private JButton homeButton = new JButton("Home");
     private JButton browseButton = new JButton("Browse");
+    private JButton logoutButton = new JButton("Logout");
+
+    //Grabbing image from folder and making it into a JLabel
+    ImageIcon img = new ImageIcon(("./Resources/healtech1-removebg-preview.png"));
+    JLabel jlPic = new JLabel(img);
 
     FrameHome() {
 
@@ -33,15 +38,20 @@ public class FrameHome extends JFrame implements ActionListener {
     public void setLocationAndSize() {
         homeButton.setBounds(5, 510, 150, 30);
         browseButton.setBounds(205, 510, 150, 30);
+        jlPic.setBounds(20, 25, 325, 300);
+        logoutButton.setBounds(5, 10, 85, 30);
     }
     public void addHomeComponentsToContainer() {
         frameHome.add(homeButton);
         frameHome.add(browseButton);
+        frameHome.add(jlPic);
+        frameHome.add(logoutButton);
     }
 
     public void addActionEvent() {
         homeButton.addActionListener(this);
         browseButton.addActionListener(this);
+        logoutButton.addActionListener(this);
     }
 
     public void changePanel(JPanel panel) {
@@ -56,7 +66,10 @@ public class FrameHome extends JFrame implements ActionListener {
             frameHome.dispose();
             BrowsePage browseFrame = new BrowsePage();
         }
-
+        if (e.getSource() == logoutButton) {
+            frameHome.dispose();
+            LoginFrame home = new LoginFrame();
+        }
     }
 }
 
