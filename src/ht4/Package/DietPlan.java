@@ -1,4 +1,4 @@
-package ht4Package;
+package ht4.Package;
 
 import javax.swing.*;
 import java.awt.*;

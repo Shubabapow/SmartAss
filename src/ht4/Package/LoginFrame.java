@@ -17,7 +17,7 @@ public class LoginFrame extends JFrame implements ActionListener {
     JCheckBox showPassword = new JCheckBox("Show Password");
 
     //Grabbing image from folder and making it into a JLabel
-    ImageIcon img = new ImageIcon(new String("./Resources/healtech1-removebg-preview.png"));
+    ImageIcon img = new ImageIcon(("./Resources/healtech1-removebg-preview.png"));
     JLabel jlPic = new JLabel(img);
     //Creating the constructor and setting the size of the JFrame along with calling our helper methods
     LoginFrame() {
@@ -35,7 +35,7 @@ public class LoginFrame extends JFrame implements ActionListener {
     }
     //Setting layout to null, which ends up just using the default layout
     public void setLayoutManager() {
-        frame.setLayout(null);
+       frame.setLayout(null);
     }
     //Declares the size for the elements
     public void setLocationAndSize() {
@@ -85,14 +85,13 @@ public class LoginFrame extends JFrame implements ActionListener {
             userText = userTextField.getText();
             pwdText = passwordField.getText();
             if (userText.equalsIgnoreCase("joey") && pwdText.equalsIgnoreCase("12345")) {
-                //Main mainFrame = new Main();
                 frame.dispose();
                 FrameHome homeFrame = new FrameHome();
-                homeFrame.setTitle("SmartAss");
-                homeFrame.setVisible(true);
-                homeFrame.setBounds(10, 10, 370, 600);
-                homeFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                homeFrame.setResizable(false);
+//                homeFrame.setTitle("SmartAss");
+//                homeFrame.setVisible(true);
+//                homeFrame.setBounds(10, 10, 370, 600);
+//                homeFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//                homeFrame.setResizable(false);
 
             } else {
                 JOptionPane.showMessageDialog(this, "Invalid Username or Password");
