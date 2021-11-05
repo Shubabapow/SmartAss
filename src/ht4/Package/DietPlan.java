@@ -9,7 +9,13 @@ public class DietPlan extends JFrame implements ActionListener {
     JFrame dietFrame = new JFrame();
     //JPanel DietPlan = new JPanel(Boolean.parseBoolean("DIETPLAN: "));
     JButton backButton = new JButton("Back");
-    JTextArea monText = new JTextArea("Meal Plan");
+    JTextArea monText = new JTextArea("Enter Meal Plan");
+    JTextArea tueText = new JTextArea("Enter Meal Plan");
+    JTextArea wedText = new JTextArea("Enter Meal Plan");
+    JTextArea thuText = new JTextArea("Enter Meal Plan");
+    JTextArea friText = new JTextArea("Enter Meal Plan");
+    JTextArea satText = new JTextArea("Enter Meal Plan");
+    JTextArea sunText = new JTextArea("Enter Meal Plan");
 //    JList Menu_Mon;
 //    JList Menu_Tue;
 //    JList Menu_Wed;
@@ -53,15 +59,22 @@ public class DietPlan extends JFrame implements ActionListener {
     //Declares the size for the elements
     public void setLocationAndSize() {
         //DietPlan.setBounds(10, 10, 100, 30);
-        backButton.setBounds(10, 10, 80, 30);
-        Mon.setBounds(10, 50,60,25);
-        Tue.setBounds(10, 130,60,25);
-        Wed.setBounds(10, 210,80,25);
-        Thu.setBounds(10, 290,60,25);
-        Fri.setBounds(10, 370,60,25);
-        Sat.setBounds(10, 450,60,25);
-        Sun.setBounds(10, 530,60,25);
-        monText.setBounds(10, 75, 300, 60);
+        backButton.setBounds(265, 0, 80, 22);
+        Mon.setBounds(10, 0,60,25);
+        Tue.setBounds(10, 80,60,25);
+        Wed.setBounds(10, 160,80,25);
+        Thu.setBounds(10, 240,60,25);
+        Fri.setBounds(10, 320,60,25);
+        Sat.setBounds(10, 400,60,25);
+        Sun.setBounds(10, 480,60,25);
+        monText.setBounds(10, 25, 250, 50);
+        tueText.setBounds(10, 105, 250, 50);
+        wedText.setBounds(10, 185, 250, 50);
+        thuText.setBounds(10, 265, 250, 50);
+        friText.setBounds(10, 345, 250, 50);
+        satText.setBounds(10, 425, 250, 50);
+        sunText.setBounds(10, 505, 250, 50);
+
 
 //        Menu_Mon.setBounds(45, 50,280,80);
 //        Menu_Tue.setBounds(45, 130,280,80);
@@ -91,6 +104,12 @@ public class DietPlan extends JFrame implements ActionListener {
         dietFrame.add(Sat);
         dietFrame.add(Sun);
         dietFrame.add(monText);
+        dietFrame.add(tueText);
+        dietFrame.add(wedText);
+        dietFrame.add(thuText);
+        dietFrame.add(friText);
+        dietFrame.add(satText);
+        dietFrame.add(sunText);
 //        frame.add(Menu_Mon);
 //        frame.add(Menu_Tue);
 //        frame.add(Menu_Wed);

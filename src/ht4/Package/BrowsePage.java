@@ -78,6 +78,10 @@ public class BrowsePage extends JFrame implements ActionListener {
             browseFrame.dispose();
             FrameHome home = new FrameHome();
         }
+        if (e.getSource() == journalButton) {
+            browseFrame.dispose();
+            JournalPage journal = new JournalPage();
+        }
     }
 
     public static void main(String[] args) {
