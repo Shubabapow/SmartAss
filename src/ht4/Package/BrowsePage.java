@@ -14,6 +14,7 @@ public class BrowsePage extends JFrame implements ActionListener {
     private JButton dietButton = new JButton("Diet");
     private JButton statsButton = new JButton("Stats");
     private JButton socialButton = new JButton("Social");
+    private JButton calendarButton = new JButton("Calendar");
 
     BrowsePage() {
         browseFrame.setTitle("SmartAss");
@@ -41,6 +42,7 @@ public class BrowsePage extends JFrame implements ActionListener {
         dietButton.setBounds(100, 270, 150, 30);
         statsButton.setBounds(100, 230, 150, 30);
         socialButton.setBounds(100, 190, 150, 30);
+        calendarButton.setBounds(100, 390, 150, 30);
     }
     public void addHomeComponentsToContainer() {
         browseFrame.add(homeButton);
@@ -50,6 +52,7 @@ public class BrowsePage extends JFrame implements ActionListener {
         browseFrame.add(dietButton);
         browseFrame.add(statsButton);
         browseFrame.add(socialButton);
+        browseFrame.add(calendarButton);
     }
 
     public void addActionEvent() {
@@ -60,6 +63,7 @@ public class BrowsePage extends JFrame implements ActionListener {
         dietButton.addActionListener(this);
         statsButton.addActionListener(this);
         socialButton.addActionListener(this);
+        calendarButton.addActionListener(this);
     }
 
     public void changePanel(JPanel panel) {
@@ -81,6 +85,10 @@ public class BrowsePage extends JFrame implements ActionListener {
         if (e.getSource() == journalButton) {
             browseFrame.dispose();
             JournalPage journal = new JournalPage();
+        }
+        if (e.getSource() == calendarButton) {
+            browseFrame.dispose();
+            CalendarPage calendar = new CalendarPage();
         }
     }
 
