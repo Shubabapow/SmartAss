@@ -1,3 +1,5 @@
+/* This is the user journal page.
+This is the page where the user can log their progress and their motivation. */
 package ht4.Package;
 
 import javax.swing.*;
@@ -5,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class JournalPage extends JFrame implements ActionListener {
+    //instantiating all of our elements
     JFrame journalFrame = new JFrame();
     JLabel titlePage = new JLabel("Daily Journal");
     JLabel titleMot = new JLabel("Motivation:");
@@ -18,6 +21,7 @@ public class JournalPage extends JFrame implements ActionListener {
     private JButton saveButton = new JButton("Save");
     private JButton exitButton = new JButton("Exit");
 
+    //Creating the constructor and setting the size of the JFrame along with calling our helper methods
     JournalPage() {
         journalFrame.setTitle("SmartAss");
         journalFrame.setBounds(10, 10, 370, 600);
@@ -31,11 +35,13 @@ public class JournalPage extends JFrame implements ActionListener {
         addActionEvent();
     }
 
+    //Setting layout to null, which ends up just using the default layout
     public void setLayoutManager() {
 
         journalFrame.setLayout(null);
     }
 
+    //Declares the size for the elements
     public void setLocationAndSize() {
         titlePage.setBounds(145,25,85, 35);
         titleMot.setBounds(35, 45, 75, 25);
@@ -50,6 +56,8 @@ public class JournalPage extends JFrame implements ActionListener {
         progText.setBounds(35, 265, 300,260);
 
     }
+
+    //Adds all the elements to the JFrame
     public void addHomeComponentsToContainer() {
         journalFrame.add(titlePage);
         journalFrame.add(titleMot);
@@ -65,11 +73,13 @@ public class JournalPage extends JFrame implements ActionListener {
 
     }
 
+    //Adds an action listener to the buttons
     public void addActionEvent() {
         saveButton.addActionListener(this);
         exitButton.addActionListener(this);
     }
 
+    //Setting the action in which each button will do.
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == saveButton) {
@@ -81,7 +91,7 @@ public class JournalPage extends JFrame implements ActionListener {
         }
     }
 
-    public static void main(String[] args) {
-        JournalPage frame = new JournalPage();
-    }
+//    public static void main(String[] args) {
+//        JournalPage frame = new JournalPage();
+//    }
 }

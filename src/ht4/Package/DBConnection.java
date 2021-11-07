@@ -1,3 +1,4 @@
+/* This is where we will connect to a Database */
 package ht4.Package;
 import java.sql.Connection;
 import java.sql.DriverManager;

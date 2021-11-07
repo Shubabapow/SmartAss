@@ -1,3 +1,4 @@
+/* This is the home page of the project. This is where the user can get to the settings page and the browse page.*/
 package ht4.Package;
 
 import javax.swing.*;
@@ -6,9 +7,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class FrameHome extends JFrame implements ActionListener {
-
+    //instantiating all of our elements
     JFrame frameHome = new JFrame();
-    //Container containerHome = getContentPane();
     private JButton homeButton = new JButton("Home");
     private JButton browseButton = new JButton("Browse");
     private JButton logoutButton = new JButton("Logout");
@@ -18,6 +18,7 @@ public class FrameHome extends JFrame implements ActionListener {
     ImageIcon img = new ImageIcon(("./Resources/healtech1-removebg-preview.png"));
     JLabel jlPic = new JLabel(img);
 
+    //Creating the constructor and setting the size of the JFrame along with calling our helper methods
     FrameHome() {
 
         frameHome.setTitle("SmartAss");
@@ -31,11 +32,11 @@ public class FrameHome extends JFrame implements ActionListener {
         addHomeComponentsToContainer();
         addActionEvent();
     }
-
+    //Setting layout to null, which ends up just using the default layout
     public void setLayoutManager() {
         frameHome.setLayout(null);
     }
-
+    //Declares the size for the elements
     public void setLocationAndSize() {
         homeButton.setBounds(5, 510, 150, 30);
         browseButton.setBounds(205, 510, 150, 30);
@@ -43,6 +44,7 @@ public class FrameHome extends JFrame implements ActionListener {
         logoutButton.setBounds(5, 10, 85, 30);
         settingsButton.setBounds(265, 0, 80, 22);
     }
+    //Adds all the elements to the JFrame
     public void addHomeComponentsToContainer() {
         frameHome.add(homeButton);
         frameHome.add(browseButton);
@@ -50,20 +52,24 @@ public class FrameHome extends JFrame implements ActionListener {
         frameHome.add(logoutButton);
         frameHome.add(settingsButton);
     }
-
+    //Adds an action listener to the buttons
     public void addActionEvent() {
         homeButton.addActionListener(this);
         browseButton.addActionListener(this);
         logoutButton.addActionListener(this);
         settingsButton.addActionListener(this);
     }
+//    //This is to clear the JPanel
+//    public void changePanel(JPanel panel) {
+//        getContentPane().removeAll();
+//        getContentPane().add(panel, BorderLayout.CENTER);
+//        getContentPane().doLayout();
+//        update(getGraphics());
+//    }
 
-    public void changePanel(JPanel panel) {
-        getContentPane().removeAll();
-        getContentPane().add(panel, BorderLayout.CENTER);
-        getContentPane().doLayout();
-        update(getGraphics());
-    }
+    //This is where we have are buttons do something. in this case the button browse is opening the browse page
+    //The logout button is logging the user out
+    //the Settings button opens the settings page
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == browseButton) {

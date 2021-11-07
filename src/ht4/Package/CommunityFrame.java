@@ -1,3 +1,4 @@
+/*  */
 package ht4.Package;
 
 import javax.swing.*;
@@ -72,9 +73,9 @@ public class CommunityFrame extends JFrame implements ActionListener {
     }
 }
 
-class Community {
-    public static void main(String[] args) {
-        new CommunityFrame();
-
-    }
-}
+//class Community {
+//    public static void main(String[] args) {
+//        new CommunityFrame();
+//
+//    }
+//}

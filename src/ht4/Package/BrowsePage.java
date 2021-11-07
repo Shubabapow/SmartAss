@@ -1,3 +1,6 @@
+/* This is the browse page.
+* This page will allow users to easily access all components in the application. */
+
 package ht4.Package;
 
 import javax.swing.*;
@@ -6,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class BrowsePage extends JFrame implements ActionListener {
+    //instantiating all of our elements
     JFrame browseFrame = new JFrame();
     private JButton homeButton = new JButton("Home");
     private JButton browseButton = new JButton("Browse");
@@ -16,6 +20,7 @@ public class BrowsePage extends JFrame implements ActionListener {
     private JButton communityButton = new JButton("Community");
     private JButton calendarButton = new JButton("Calendar");
 
+    //Creating the constructor and setting the size of the JFrame along with calling our helper methods
     BrowsePage() {
         browseFrame.setTitle("SmartAss");
         browseFrame.setBounds(10, 10, 370, 600);
@@ -29,11 +34,13 @@ public class BrowsePage extends JFrame implements ActionListener {
         addActionEvent();
     }
 
+    //Setting layout to null, which ends up just using the default layout
     public void setLayoutManager() {
 
         browseFrame.setLayout(null);
     }
 
+    //Declares the size for the elements
     public void setLocationAndSize() {
         homeButton.setBounds(5, 510, 150, 30);
         browseButton.setBounds(205, 510, 150, 30);
@@ -44,6 +51,8 @@ public class BrowsePage extends JFrame implements ActionListener {
         communityButton.setBounds(100, 190, 150, 30);
         calendarButton.setBounds(100, 390, 150, 30);
     }
+
+    //Adds all the elements to the JFrame
     public void addHomeComponentsToContainer() {
         browseFrame.add(homeButton);
         browseFrame.add(browseButton);
@@ -55,6 +64,7 @@ public class BrowsePage extends JFrame implements ActionListener {
         browseFrame.add(calendarButton);
     }
 
+    //Adds an action listener to the buttons
     public void addActionEvent() {
         homeButton.addActionListener(this);
         browseButton.addActionListener(this);
@@ -66,12 +76,15 @@ public class BrowsePage extends JFrame implements ActionListener {
         calendarButton.addActionListener(this);
     }
 
-    public void changePanel(JPanel panel) {
-        getContentPane().removeAll();
-        getContentPane().add(panel, BorderLayout.CENTER);
-        getContentPane().doLayout();
-        update(getGraphics());
-    }
+    // This code clears the JPanel
+//    public void changePanel(JPanel panel) {
+//        getContentPane().removeAll();
+//        getContentPane().add(panel, BorderLayout.CENTER);
+//        getContentPane().doLayout();
+//        update(getGraphics());
+//    }
+
+    //Setting the action in which each button will do.
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == dietButton) {
@@ -103,12 +116,13 @@ public class BrowsePage extends JFrame implements ActionListener {
         }
     }
 
-    public static void main(String[] args) {
-        BrowsePage frame = new BrowsePage();
-        frame.setBounds(10, 10, 370, 600);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setVisible(true);
-
-    }
+    //This code is to run this single page for testing
+//    public static void main(String[] args) {
+//        BrowsePage frame = new BrowsePage();
+//        frame.setBounds(10, 10, 370, 600);
+//        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//        frame.setVisible(true);
+//
+//    }
 }
 

@@ -1,3 +1,4 @@
+/*  */
 package ht4.Package;
 
 import javax.swing.*;
@@ -98,9 +99,9 @@ public class CalendarPage extends JFrame implements ActionListener {
         }
     }
 
-    public static void main(String args[]){
-        JFrame.setDefaultLookAndFeelDecorated(true);
-        new CalendarPage();
-    }
+//    public static void main(String args[]){
+//        JFrame.setDefaultLookAndFeelDecorated(true);
+//        new CalendarPage();
+//    }
 
 }
