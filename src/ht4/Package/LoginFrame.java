@@ -87,7 +87,7 @@ public class LoginFrame extends JFrame implements ActionListener {
             pwdText = passwordField.getText();
             if (userText.equalsIgnoreCase("joey") && pwdText.equalsIgnoreCase("12345")) {
                 frame.dispose();
-                FrameHome homeFrame = new FrameHome();
+                new FrameHome();
 
             } else {
                 JOptionPane.showMessageDialog(this, "Invalid Username or Password");

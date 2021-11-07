@@ -9,11 +9,11 @@ public class BrowsePage extends JFrame implements ActionListener {
     JFrame browseFrame = new JFrame();
     private JButton homeButton = new JButton("Home");
     private JButton browseButton = new JButton("Browse");
-    private JButton profileButton = new JButton("Profile");
+    private JButton stepCountButton = new JButton("Step Counter");
     private JButton journalButton = new JButton("Journal");
     private JButton dietButton = new JButton("Diet");
-    private JButton statsButton = new JButton("Stats");
-    private JButton socialButton = new JButton("Social");
+    private JButton progressButton = new JButton("Progress photos");
+    private JButton communityButton = new JButton("Community");
     private JButton calendarButton = new JButton("Calendar");
 
     BrowsePage() {
@@ -37,32 +37,32 @@ public class BrowsePage extends JFrame implements ActionListener {
     public void setLocationAndSize() {
         homeButton.setBounds(5, 510, 150, 30);
         browseButton.setBounds(205, 510, 150, 30);
-        profileButton.setBounds(100, 350, 150, 30);
+        stepCountButton.setBounds(100, 350, 150, 30);
         journalButton.setBounds(100, 310, 150, 30);
         dietButton.setBounds(100, 270, 150, 30);
-        statsButton.setBounds(100, 230, 150, 30);
-        socialButton.setBounds(100, 190, 150, 30);
+        progressButton.setBounds(100, 230, 150, 30);
+        communityButton.setBounds(100, 190, 150, 30);
         calendarButton.setBounds(100, 390, 150, 30);
     }
     public void addHomeComponentsToContainer() {
         browseFrame.add(homeButton);
         browseFrame.add(browseButton);
-        browseFrame.add(profileButton);
+        browseFrame.add(stepCountButton);
         browseFrame.add(journalButton);
         browseFrame.add(dietButton);
-        browseFrame.add(statsButton);
-        browseFrame.add(socialButton);
+        browseFrame.add(progressButton);
+        browseFrame.add(communityButton);
         browseFrame.add(calendarButton);
     }
 
     public void addActionEvent() {
         homeButton.addActionListener(this);
         browseButton.addActionListener(this);
-        profileButton.addActionListener(this);
+        stepCountButton.addActionListener(this);
         journalButton.addActionListener(this);
         dietButton.addActionListener(this);
-        statsButton.addActionListener(this);
-        socialButton.addActionListener(this);
+        progressButton.addActionListener(this);
+        communityButton.addActionListener(this);
         calendarButton.addActionListener(this);
     }
 
@@ -76,19 +76,30 @@ public class BrowsePage extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == dietButton) {
             browseFrame.dispose();
-            DietPlan dietPlan = new DietPlan();
+            new DietPlan();
         }
         if (e.getSource() == homeButton) {
             browseFrame.dispose();
-            FrameHome home = new FrameHome();
+            new FrameHome();
         }
         if (e.getSource() == journalButton) {
             browseFrame.dispose();
-            JournalPage journal = new JournalPage();
+            new JournalPage();
+        }
+        if (e.getSource() == progressButton) {
+            browseFrame.dispose();
+            new ProgressPic();
         }
         if (e.getSource() == calendarButton) {
             browseFrame.dispose();
-            CalendarPage calendar = new CalendarPage();
+            new CalendarPage();
+        }
+        if (e.getSource() == communityButton) {
+            browseFrame.dispose();
+            new CommunityFrame();
+        }
+        if (e.getSource() == stepCountButton) {
+            JOptionPane.showMessageDialog(this, "COMING SOON...");
         }
     }
 

@@ -67,14 +67,14 @@ public class CommunityFrame extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == backButton) {
             communityFrame.dispose();
-            BrowsePage browse = new BrowsePage();
+            new BrowsePage();
         }
     }
 }
 
 class Community {
     public static void main(String[] args) {
-        CommunityFrame communityFrame = new CommunityFrame();
+        new CommunityFrame();
 
     }
 }

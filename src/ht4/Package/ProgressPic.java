@@ -8,7 +8,6 @@ import java.io.File;
 
 public class ProgressPic extends JFrame implements ActionListener{
 
-
     JFrame progressPic = new JFrame();
     ImageIcon img = new ImageIcon(("./Resources/healtech1-removebg-preview.png"));
     JLabel jlPic = new JLabel(img);
@@ -25,14 +24,11 @@ public class ProgressPic extends JFrame implements ActionListener{
         progressPic.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         progressPic.setResizable(false);
 
-
-
         setLayoutManager();
         setLocationAndSize();
         addHomeComponentsToContainer();
         addActionEvent();
         showImage();
-
     }
 
     public String[] getImages()
@@ -84,19 +80,15 @@ public class ProgressPic extends JFrame implements ActionListener{
         previousButton.addActionListener(this);
     }
 
-
-
-
-
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == browseButton) {
             progressPic.dispose();
-            BrowsePage browseFrame = new BrowsePage();
+            new BrowsePage();
         }
         if (e.getSource() == homeButton) {
             progressPic.dispose();
-            FrameHome home= new FrameHome();
+            new FrameHome();
         }
         if(e.getSource()==nextButton)
         {
@@ -109,8 +101,4 @@ public class ProgressPic extends JFrame implements ActionListener{
             showImage();
         }
     }
-}
-
-class PicAndDate{
-
 }

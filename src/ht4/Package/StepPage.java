@@ -43,12 +43,13 @@ public class StepPage extends JFrame implements ActionListener {
 
         }
         if (e.getSource() == exitButton) {
-            BrowsePage home = new BrowsePage();
+            stepFrame.dispose();
+            new BrowsePage();
         }
     }
 
     public static void main(String[] args) {
-        StepPage frame = new StepPage();
+        new StepPage();
     }
 }
 

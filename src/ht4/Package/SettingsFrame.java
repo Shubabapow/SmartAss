@@ -73,15 +73,15 @@ public class SettingsFrame extends JFrame implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == backButton) {
             settingsFrame.dispose();
-            BrowsePage browse = new BrowsePage();
+            new FrameHome();
         }
         else if (e.getSource() == profileButton) {
             settingsFrame.dispose();
-            ProfilePage profile = new ProfilePage();
+            new ProfilePage();
         }
         else if (e.getSource() == logoutButton) {
             settingsFrame.dispose();
-            LoginFrame login = new LoginFrame();
+            new LoginFrame();
         }
         else if (e.getSource() == darkThemeButton && !darkThemeClicked) {
             settingsFrame.getContentPane().setBackground(Color.DARK_GRAY);
@@ -106,8 +106,8 @@ public class SettingsFrame extends JFrame implements ActionListener{
     }
 }
 
-class Settings {
-    public static void main(String[] args) {
-        SettingsFrame settingsFrame = new SettingsFrame();
-    }
-}
+//class Settings {
+//    public static void main(String[] args) {
+//        new SettingsFrame();
+//    }
+//}

@@ -73,12 +73,11 @@ public class JournalPage extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == saveButton) {
-//            browseFrame.dispose();
-//            DietPlan dietPlan = new DietPlan();
+            JOptionPane.showMessageDialog(this, "Saved");
         }
         if (e.getSource() == exitButton) {
             journalFrame.dispose();
-            BrowsePage home = new BrowsePage();
+            new BrowsePage();
         }
     }
 

@@ -93,13 +93,14 @@ public class CalendarPage extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == exitButton) {
-            BrowsePage home = new BrowsePage();
+            calFrame.dispose();
+            new BrowsePage();
         }
     }
 
     public static void main(String args[]){
         JFrame.setDefaultLookAndFeelDecorated(true);
-        CalendarPage sCal = new CalendarPage();
+        new CalendarPage();
     }
 
 }
