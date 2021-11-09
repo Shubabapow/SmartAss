@@ -10,13 +10,10 @@ public class DBConnection {
     public static void main(String[] args) {
 
         String connectionUrl =
-                "jdbc:sqlserver://DESKTOP-IIPD0JO\\SQLEXPRESS.database.windows.net:1433;"
-                        + "database=SmartAssDB;"
-                        + "user=Admin;"
-                        + "password=12345;"
-                        + "encrypt=true;"
-                        + "trustServerCertificate=false;"
-                        + "loginTimeout=30;";
+                "jdbc:sqlserver://smartassdb.cbwxuz3gtope.us-east-2.rds.amazonaws.com:1433;"
+                        + "database=Smartass;"
+                        + "user=admin;"
+                        + "password=Smart123Ass#;";
 
         try {
             Connection connection = DriverManager.getConnection(connectionUrl);

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="Microsoft SQL Server - Smartass@smartassdb.cbwxuz3gtope.us-east-2.rds.amazonaws.com" uuid="a189a3ab-a0b1-40e8-9705-6b414a71d5fd">
+      <driver-ref>sqlserver.ms</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.microsoft.sqlserver.jdbc.SQLServerDriver</jdbc-driver>
+      <jdbc-url>jdbc:sqlserver://smartassdb.cbwxuz3gtope.us-east-2.rds.amazonaws.com\smartassdb:1433;database=Smartass</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
+  </component>
+</project>
