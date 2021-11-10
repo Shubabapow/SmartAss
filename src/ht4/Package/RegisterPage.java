@@ -7,7 +7,7 @@ import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.sql.Statement;
+
 
 public class RegisterPage extends JFrame implements ActionListener {
     //instantiating all of our elements
@@ -44,9 +44,9 @@ public class RegisterPage extends JFrame implements ActionListener {
     }
     //Declares the size for the elements
     public void setLocationAndSize() {
-        emailLabel.setBounds(50, 325, 100, 30);
-        passwordLabel.setBounds(50, 370, 100, 30);
-        cPasswordLabel.setBounds(50, 415, 100, 30);
+        emailLabel.setBounds(15, 325, 100, 30);
+        passwordLabel.setBounds(15, 370, 100, 30);
+        cPasswordLabel.setBounds(15, 415, 185, 30);
         emailTextField.setBounds(150, 325, 150, 30);
         passwordField.setBounds(150, 370, 150, 30);
         cPasswordField.setBounds(150, 415, 150, 30);
@@ -92,37 +92,17 @@ public class RegisterPage extends JFrame implements ActionListener {
             emailText = emailTextField.getText();
             pwdText = passwordField.getText();
             cpwdText = cPasswordField.getText();
+            //Connection
+            Connection conn = DBConnection.DBC();
+            //Query
+            DBQueries queries = new DBQueries();
 
-            //for(int i = 0; i <= pwdText.length(); i++) {
-
-                if (1==1/*pwdText.charAt(i) == cpwdText.charAt(i)*/) {
-                    String connectionUrl =
-                            "jdbc:sqlserver://smartassdb.cbwxuz3gtope.us-east-2.rds.amazonaws.com:1433;"
-                                    + "database=Smartass;"
-                                    + "user=admin;"
-                                    + "password=Smart123Ass#;";
-                    Connection connection = null;
-                    try {
-                        connection = DriverManager.getConnection(connectionUrl);
-                    } catch (SQLException ex) {
-                        ex.printStackTrace();
-                    }
-                    Statement s = null;
-                    try {
-                        s = connection.createStatement();
-                    } catch (SQLException ex) {
-                        ex.printStackTrace();
-                    }
-                    try {
-                        s.executeUpdate("INSERT INTO Table_Login (username, password) VALUES ('" + emailText + "','" + pwdText + "')");
-                    } catch (SQLException ex) {
-                        ex.printStackTrace();
-                    }
-
-                } else {
-                    JOptionPane.showMessageDialog(this, "Passwords don't match");
-                }
-            //}
+            if (pwdText.equals(cpwdText)) {
+                queries.inserting(emailText, pwdText, conn);
+                JOptionPane.showMessageDialog(this, "YAY :)");
+            } else {
+                JOptionPane.showMessageDialog(this, "Passwords don't match");
+            }
         }
     }
     public static void main(String[] a) {

@@ -5,6 +5,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
 
 public class LoginFrame extends JFrame implements ActionListener {
     //instantiating all of our elements
@@ -86,7 +87,11 @@ public class LoginFrame extends JFrame implements ActionListener {
             String pwdText;
             userText = userTextField.getText();
             pwdText = passwordField.getText();
-            if (userText.equalsIgnoreCase("joey") && pwdText.equalsIgnoreCase("12345")) {
+            Connection conn = DBConnection.DBC();
+            //Query
+            DBQueries queries = new DBQueries();
+            //queries.selecting(pwdText, pwdText, conn);
+            if (queries.selecting(pwdText, pwdText, conn)) {
                 frame.dispose();
                 new FrameHome();
 
@@ -107,6 +112,10 @@ public class LoginFrame extends JFrame implements ActionListener {
             }
 
         }
+    }
+    public static void main(String[] a) {
+        new LoginFrame();
+
     }
 }
 
