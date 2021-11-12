@@ -13,10 +13,12 @@ public class RegisterPage extends JFrame implements ActionListener {
     JLabel usernameLabel = new JLabel("USERNAME:");
     JLabel passwordLabel = new JLabel("PASSWORD:");
     JLabel cPasswordLabel = new JLabel("CONFIRM PASSWORD:");
+    JLabel registerLabel = new JLabel("Register an account");
     JTextField usernameTextField = new JTextField();
     JPasswordField passwordField = new JPasswordField();
     JPasswordField cPasswordField = new JPasswordField();
     JButton createAccountButton = new JButton("Create Account");
+    JButton backButton = new JButton("Back");
 
     //Grabbing image from folder and making it into a JLabel
     ImageIcon img = new ImageIcon(("./Resources/healtech1-removebg-preview.png"));
@@ -48,9 +50,11 @@ public class RegisterPage extends JFrame implements ActionListener {
         usernameTextField.setBounds(150, 325, 150, 30);
         passwordField.setBounds(150, 370, 150, 30);
         cPasswordField.setBounds(150, 415, 150, 30);
+        registerLabel.setBounds(150,300,150,20);
 
-        createAccountButton.setBounds(150, 500, 200, 30);
-        jlPic.setBounds(20, 25, 325, 300);
+        createAccountButton.setBounds(150, 500, 160, 30);
+        backButton.setBounds(10,10,80,30);
+        jlPic.setBounds(20, 10, 325, 300);
 
     }
     //Adds all the elements to the JFrame
@@ -61,13 +65,17 @@ public class RegisterPage extends JFrame implements ActionListener {
         frame.add(usernameTextField);
         frame.add(passwordField);
         frame.add(cPasswordField);
+        frame.add(registerLabel);
 
         frame.add(createAccountButton);
+        frame.add(backButton);
         frame.add(jlPic);
     }
     //Adds an action listener to the buttons
     public void addActionEvent() {
+
         createAccountButton.addActionListener(this);
+        backButton.addActionListener(this);
     }
     //This is to clear the JPanel
 //    public void changePanel(FrameHome panel) {
@@ -83,6 +91,10 @@ public class RegisterPage extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         // Coding Part of LOGIN button
+        if(e.getSource() == backButton) {
+            frame.dispose();
+            new LoginFrame();
+        }
         if (e.getSource() == createAccountButton) {
             String usernameText;
             String pwdText;
@@ -96,7 +108,7 @@ public class RegisterPage extends JFrame implements ActionListener {
             DBQueries queries = new DBQueries();
 
             if (pwdText.equals(cpwdText) && usernameText.length() >= 6 && pwdText.length() >= 6) {
-                queries.inserting(usernameText, pwdText, conn);
+                queries.creatingUser(usernameText, pwdText, conn);
                 JOptionPane.showMessageDialog(this, "Account has been created");
                 frame.dispose();
                 new LoginFrame();

@@ -91,7 +91,7 @@ public class LoginFrame extends JFrame implements ActionListener {
             Connection conn = DBConnection.DBC();
             //Query
             DBQueries queries = new DBQueries();
-            if (queries.selecting(userText, pwdText, conn)) {
+            if (queries.selectingUserLogin(userText, pwdText, conn)) {
                 frame.dispose();
                 new FrameHome();
 

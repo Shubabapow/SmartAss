@@ -1,13 +1,28 @@
 /* This is the user profile page.
-This is where the user can see and edit their user information. */
+This is where the user can see and edit their user information.
+The page will show the users profile information on open. If the user clicks on the edit profile button
+the user will be able to change their user information.*/
 package ht4.Package;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
 
 public class ProfilePage extends JFrame implements ActionListener {
     //instantiating all of our elements
+
+    boolean edit;
+    String name;
+    String phone;
+    String email;
+    String age;
+    String heightFT = "5";
+    String heightIN = "6";
+    String cWeight;
+    String bmi;
+    String gWeight;
+
     JFrame profileFrame = new JFrame();
     JLabel titleName = new JLabel("Name:");
     JLabel titlePhone = new JLabel("Phone:");
@@ -17,17 +32,22 @@ public class ProfilePage extends JFrame implements ActionListener {
     JLabel titleCWeight = new JLabel("Current Weight:");
     JLabel titleBMI = new JLabel("BMI:");
     JLabel titleGWeight = new JLabel("Goal Weight:");
+    JLabel titleFT = new JLabel("ft");
+    JLabel titleIN = new JLabel("in");
 
-    JTextField nameText = new JTextField("Jane Doe");
-    JTextField phoneText = new JTextField("123-456-7899");
-    JTextField emailText = new JTextField("demo@test.com");
-    JTextField ageText = new JTextField("32");
-    JTextField heightText = new JTextField("5 ft 1 in");
-    JTextField cWeightText = new JTextField("145 lb");
-    JTextField bmiText = new JTextField("22");
-    JTextField gWeightText = new JTextField("115 lb");
+    JTextField nameText = new JTextField(name);
+    JTextField phoneText = new JTextField(phone);
+    JTextField emailText = new JTextField(email);
+    JTextField ageText = new JTextField(age);
+    JTextField heightFTText = new JTextField(heightFT);
+    JTextField heightINText = new JTextField(heightIN);
+    JTextField cWeightText = new JTextField(cWeight);;
+    JTextField bmiText = new JTextField(bmi);
+    JTextField gWeightText = new JTextField(gWeight);
 
-    private JButton exitButton = new JButton("Exit");
+    JButton exitButton = new JButton("Exit");
+    JButton editButton = new JButton("edit");
+    JButton updateButton = new JButton("Update");
 
     //Creating the constructor and setting the size of the JFrame along with calling our helper methods
     ProfilePage() {
@@ -36,11 +56,13 @@ public class ProfilePage extends JFrame implements ActionListener {
         profileFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         profileFrame.setVisible(true);
         profileFrame.setResizable(false);
+        edit = false;
 
         setLayoutManager();
         setLocationAndSize();
         addHomeComponentsToContainer();
         addActionEvent();
+        editable();
     }
 
     //Setting layout to null, which ends up just using the default layout
@@ -48,11 +70,21 @@ public class ProfilePage extends JFrame implements ActionListener {
 
         profileFrame.setLayout(null);
     }
-
+    public void editable() {
+        nameText.setEditable(edit);
+        phoneText.setEditable(edit);
+        emailText.setEditable(edit);
+        ageText.setEditable(edit);
+        heightFTText.setEditable(edit);
+        heightINText.setEditable(edit);
+        cWeightText.setEditable(edit);
+        bmiText.setEditable(edit);
+        gWeightText.setEditable(edit);
+    }
     //Declares the size for the elements
     public void setLocationAndSize() {
 
-        exitButton.setBounds(0, 0, 80, 25);
+        exitButton.setBounds(0, 20, 80, 25);
 
         nameText.setBounds(155, 65, 120,25);
         titleName.setBounds(5, 65, 80,30);
@@ -66,7 +98,10 @@ public class ProfilePage extends JFrame implements ActionListener {
         ageText.setBounds(155, 155, 120,25);
         titleAge.setBounds(5, 155, 80,30);
 
-        heightText.setBounds(155, 185, 120,25);
+        heightFTText.setBounds(155, 185, 30,25);
+        titleFT.setBounds(190, 185, 15,25);
+        heightINText.setBounds(210, 185, 30,25);
+        titleIN.setBounds(245, 185, 15,25);
         titleHeight.setBounds(5, 185, 80,30);
 
         cWeightText.setBounds(155, 215, 120,25);
@@ -77,6 +112,9 @@ public class ProfilePage extends JFrame implements ActionListener {
 
         gWeightText.setBounds(155, 275, 120,25);
         titleGWeight.setBounds(5, 275, 80,30);
+
+        editButton.setBounds(270,20,80,25);
+        updateButton.setBounds(155, 500, 80, 30);
     }
 
     //Adds all the elements to the JFrame
@@ -89,14 +127,19 @@ public class ProfilePage extends JFrame implements ActionListener {
         profileFrame.add(titleCWeight);
         profileFrame.add(titleBMI);
         profileFrame.add(titleGWeight);
+        profileFrame.add(titleFT);
+        profileFrame.add(titleIN);
 
         profileFrame.add(exitButton);
+        profileFrame.add(editButton);
+        profileFrame.add(updateButton);
 
         profileFrame.add(nameText);
         profileFrame.add(phoneText);
         profileFrame.add(emailText);
         profileFrame.add(ageText);
-        profileFrame.add(heightText);
+        profileFrame.add(heightFTText);
+        profileFrame.add(heightINText);
         profileFrame.add(cWeightText);
         profileFrame.add(bmiText);
         profileFrame.add(gWeightText);
@@ -105,13 +148,38 @@ public class ProfilePage extends JFrame implements ActionListener {
 
     //Adds an action listener to the buttons
     public void addActionEvent() {
+
         exitButton.addActionListener(this);
+        editButton.addActionListener(this);
+        updateButton.addActionListener(this);
     }
 
     //Setting the action in which each button will do.
     @Override
     public void actionPerformed(ActionEvent e) {
+        if(e.getSource() == updateButton){
 
+            name = nameText.getText();
+            phone = phoneText.getText();
+            email = emailText.getText();
+            age = ageText.getText();
+            heightFT = heightFTText.getText();
+            heightIN = heightINText.getText();
+            cWeight = cWeightText.getText();
+            bmi = bmiText.getText();
+            gWeight = gWeightText.getText();
+
+            Connection conn = DBConnection.DBC();
+            DBQueries queries = new DBQueries();
+            if(queries.updatingUserInfo(conn, name, phone, email, age, heightFT, heightIN, cWeight, bmi, gWeight)) {
+                edit = false;
+                editable();
+            }
+        }
+        if(e.getSource() == editButton) {
+            edit = true;
+            editable();
+        }
         if (e.getSource() == exitButton) {
             profileFrame.dispose();
             new SettingsFrame();
