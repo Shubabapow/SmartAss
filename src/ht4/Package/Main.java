@@ -1,11 +1,12 @@
+/* This is the main method that will start the program */
 package ht4.Package;
 
 import javax.swing.*;
 
-public class Main /*extends JFrame*/ {
+//Main Method that runs the program
+public class Main {
         public static void main(String[] a) {
-            LoginFrame frame = new LoginFrame();
-
+            new LoginFrame();
         }
 
     }

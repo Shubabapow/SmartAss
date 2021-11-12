@@ -1,9 +1,11 @@
+/*  */
 package ht4.Package;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
 
 public class LoginFrame extends JFrame implements ActionListener {
     //instantiating all of our elements
@@ -65,14 +67,15 @@ public class LoginFrame extends JFrame implements ActionListener {
     public void addActionEvent() {
         loginButton.addActionListener(this);
         showPassword.addActionListener(this);
+        registerButton.addActionListener(this);
     }
     //This is to clear the JPanel
-    public void changePanel(FrameHome panel) {
-        getContentPane().removeAll();
-        getContentPane().add(panel, BorderLayout.CENTER);
-        getContentPane().doLayout();
-        update(getGraphics());
-    }
+//    public void changePanel(FrameHome panel) {
+//        getContentPane().removeAll();
+//        getContentPane().add(panel, BorderLayout.CENTER);
+//        getContentPane().doLayout();
+//        update(getGraphics());
+//    }
 
     // This is the action of clicking on the login button.
     // If the username and password are correct then it will take you to the home screen.
@@ -85,13 +88,21 @@ public class LoginFrame extends JFrame implements ActionListener {
             String pwdText;
             userText = userTextField.getText();
             pwdText = passwordField.getText();
-            if (userText.equalsIgnoreCase("joey") && pwdText.equalsIgnoreCase("12345")) {
+            Connection conn = DBConnection.DBC();
+            //Query
+            DBQueries queries = new DBQueries();
+            if (queries.selectingUserLogin(userText, pwdText, conn)) {
                 frame.dispose();
-                FrameHome homeFrame = new FrameHome();
+                new FrameHome();
 
             } else {
                 JOptionPane.showMessageDialog(this, "Invalid Username or Password");
             }
+
+        }
+        if(e.getSource() == registerButton) {
+            frame.dispose();
+            new RegisterPage();
 
         }
 
@@ -106,6 +117,10 @@ public class LoginFrame extends JFrame implements ActionListener {
             }
 
         }
+    }
+    public static void main(String[] a) {
+        new LoginFrame();
+
     }
 }
 

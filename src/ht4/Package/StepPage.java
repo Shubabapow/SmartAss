@@ -1,3 +1,5 @@
+/* This will be the step counter page.
+* This page will display the amount of steps tracked by the users phone. */
 package ht4.Package;
 
 import javax.swing.*;
@@ -6,11 +8,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class StepPage extends JFrame implements ActionListener {
+    //instantiating all of our elements
     JFrame stepFrame = new JFrame();
     private JButton saveButton = new JButton("Save");
     private JButton exitButton = new JButton("Exit");
 
-
+    //Creating the constructor and setting the size of the JFrame along with calling our helper methods
     StepPage() {
         stepFrame.setTitle("SmartAss");
         stepFrame.setBounds(10, 10, 370, 600);
@@ -22,7 +25,7 @@ public class StepPage extends JFrame implements ActionListener {
         setLocationAndSize();
         addActionEvent();
     }
-
+    //Setting layout to null, which ends up just using the default layout
     public void setLayoutManager() {
         stepFrame.setLayout(null);
     }
@@ -43,12 +46,13 @@ public class StepPage extends JFrame implements ActionListener {
 
         }
         if (e.getSource() == exitButton) {
-            BrowsePage home = new BrowsePage();
+            stepFrame.dispose();
+            new BrowsePage();
         }
     }
 
-    public static void main(String[] args) {
-        StepPage frame = new StepPage();
-    }
+//    public static void main(String[] args) {
+//        new StepPage();
+//    }
 }
 

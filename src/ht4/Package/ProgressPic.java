@@ -1,3 +1,5 @@
+/* This page is the progress page which will allow the user to upload progress pictures and track their physical progress
+* over time. */
 package ht4.Package;
 
 import javax.swing.*;
@@ -7,8 +9,7 @@ import java.awt.event.ActionListener;
 import java.io.File;
 
 public class ProgressPic extends JFrame implements ActionListener{
-
-
+    //instantiating all of our elements
     JFrame progressPic = new JFrame();
     ImageIcon img = new ImageIcon(("./Resources/healtech1-removebg-preview.png"));
     JLabel jlPic = new JLabel(img);
@@ -18,6 +19,7 @@ public class ProgressPic extends JFrame implements ActionListener{
     private JButton nextButton = new JButton("Next");
     private JButton previousButton = new JButton("Previous");
 
+    //Creating the constructor and setting the size of the JFrame along with calling our helper methods
     ProgressPic() {
         progressPic.setTitle("SmartAss");
         progressPic.setVisible(true);
@@ -25,22 +27,21 @@ public class ProgressPic extends JFrame implements ActionListener{
         progressPic.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         progressPic.setResizable(false);
 
-
-
         setLayoutManager();
         setLocationAndSize();
         addHomeComponentsToContainer();
         addActionEvent();
         showImage();
-
     }
 
+    //Grabbing the images from the resources folder
     public String[] getImages()
     {
         File directoryPath=new File("./Resources/ProgressPictures");
         String[] imagesList=directoryPath.list();
         return imagesList;
     }
+    // Creating an array to cycle through the images
     public void showImage()
     {
         String [] imageList=getImages();
@@ -57,11 +58,12 @@ public class ProgressPic extends JFrame implements ActionListener{
         Image image = icon.getImage().getScaledInstance(jlPic.getWidth(),jlPic.getHeight(),Image.SCALE_SMOOTH);
         jlPic.setIcon(new ImageIcon(image));
     }
-
+    //Setting layout to null, which ends up just using the default layout
     public void setLayoutManager() {
         progressPic.setLayout(null);
     }
 
+    //Declares the size for the elements
     public void setLocationAndSize() {
         homeButton.setBounds(5, 510, 150, 30);
         browseButton.setBounds(205, 510, 150, 30);
@@ -70,6 +72,7 @@ public class ProgressPic extends JFrame implements ActionListener{
         jlPic.setBounds(20, 50, 325, 300);
     }
 
+    //Adds all the elements to the JFrame
     public void addHomeComponentsToContainer() {
         progressPic.add(homeButton);
         progressPic.add(browseButton);
@@ -77,6 +80,8 @@ public class ProgressPic extends JFrame implements ActionListener{
         progressPic.add(nextButton);
         progressPic.add(jlPic);
     }
+
+    //Adds an action listener to the buttons
     public void addActionEvent() {
         homeButton.addActionListener(this);
         browseButton.addActionListener(this);
@@ -84,33 +89,28 @@ public class ProgressPic extends JFrame implements ActionListener{
         previousButton.addActionListener(this);
     }
 
-
-
-
-
+    //Setting the action in which each button will do.
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == browseButton) {
             progressPic.dispose();
-            BrowsePage browseFrame = new BrowsePage();
+            new BrowsePage();
         }
         if (e.getSource() == homeButton) {
             progressPic.dispose();
-            FrameHome home= new FrameHome();
+            new FrameHome();
         }
+        //Cycles the image to the right
         if(e.getSource()==nextButton)
         {
             indexy++;
             showImage();
         }
+        //Cycles the image to the left
         if(e.getSource()==previousButton)
         {
             indexy--;
             showImage();
         }
     }
-}
-
-class PicAndDate{
-
 }

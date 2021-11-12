@@ -1,3 +1,5 @@
+/* This is the settings page.
+this is where the user can change the settings for their application */
 package ht4.Package;
 
 import javax.swing.*;
@@ -6,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class SettingsFrame extends JFrame implements ActionListener{
+    //instantiating all of our elements
     JFrame settingsFrame = new JFrame();
     JLabel settingsLabel = new JLabel("Settings");
     JButton backButton = new JButton("Back");
@@ -20,6 +23,7 @@ public class SettingsFrame extends JFrame implements ActionListener{
     boolean darkThemeClicked = false; //ActionListener flag for sequential button clicking.
     boolean toggleNotificationsClicked = false;
 
+    //Creating the constructor and setting the size of the JFrame along with calling our helper methods
     SettingsFrame() {
         settingsFrame.setTitle("Settings");
         settingsFrame.setVisible(true);
@@ -33,10 +37,12 @@ public class SettingsFrame extends JFrame implements ActionListener{
 
     }
 
+    //Setting layout to null, which ends up just using the default layout
     public void setLayoutManager() {
         settingsFrame.setLayout(null);
     }
 
+    //Declares the size for the elements
     public void setLocationAndSize() {
         settingsLabel.setBounds(10,10,100,50);
         backButton.setBounds(280,25,70,20);
@@ -49,6 +55,7 @@ public class SettingsFrame extends JFrame implements ActionListener{
         darkThemeButton.setBounds(85, 240, 180, 30);
     }
 
+    //Adds all the elements to the JFrame
     public void addComponentsToContainer() {
         settingsFrame.add(settingsLabel);
         settingsFrame.add(backButton);
@@ -61,6 +68,7 @@ public class SettingsFrame extends JFrame implements ActionListener{
         settingsFrame.add(logoutButton);
     }
 
+    //Adds an action listener to the buttons
     public void addActionEvent() {
         profileButton.addActionListener(this);
         backButton.addActionListener(this);
@@ -69,19 +77,20 @@ public class SettingsFrame extends JFrame implements ActionListener{
         toggleNotificationsButton.addActionListener(this);
     }
 
+    //Setting the action in which each button will do.
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == backButton) {
             settingsFrame.dispose();
-            BrowsePage browse = new BrowsePage();
+            new FrameHome();
         }
         else if (e.getSource() == profileButton) {
             settingsFrame.dispose();
-            ProfilePage profile = new ProfilePage();
+            new ProfilePage();
         }
         else if (e.getSource() == logoutButton) {
             settingsFrame.dispose();
-            LoginFrame login = new LoginFrame();
+            new LoginFrame();
         }
         else if (e.getSource() == darkThemeButton && !darkThemeClicked) {
             settingsFrame.getContentPane().setBackground(Color.DARK_GRAY);
@@ -105,9 +114,9 @@ public class SettingsFrame extends JFrame implements ActionListener{
         }
     }
 }
-
-class Settings {
-    public static void main(String[] args) {
-        SettingsFrame settingsFrame = new SettingsFrame();
-    }
-}
+//For testing the single page
+//class Settings {
+//    public static void main(String[] args) {
+//        new SettingsFrame();
+//    }
+//}
