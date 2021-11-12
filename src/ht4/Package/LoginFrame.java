@@ -67,6 +67,7 @@ public class LoginFrame extends JFrame implements ActionListener {
     public void addActionEvent() {
         loginButton.addActionListener(this);
         showPassword.addActionListener(this);
+        registerButton.addActionListener(this);
     }
     //This is to clear the JPanel
 //    public void changePanel(FrameHome panel) {
@@ -90,14 +91,18 @@ public class LoginFrame extends JFrame implements ActionListener {
             Connection conn = DBConnection.DBC();
             //Query
             DBQueries queries = new DBQueries();
-            //queries.selecting(pwdText, pwdText, conn);
-            if (queries.selecting(pwdText, pwdText, conn)) {
+            if (queries.selecting(userText, pwdText, conn)) {
                 frame.dispose();
                 new FrameHome();
 
             } else {
                 JOptionPane.showMessageDialog(this, "Invalid Username or Password");
             }
+
+        }
+        if(e.getSource() == registerButton) {
+            frame.dispose();
+            new RegisterPage();
 
         }
 

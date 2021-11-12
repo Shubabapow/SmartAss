@@ -5,17 +5,15 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
 
 
 public class RegisterPage extends JFrame implements ActionListener {
     //instantiating all of our elements
     JFrame frame = new JFrame();
-    JLabel emailLabel = new JLabel("EMAIL:");
+    JLabel usernameLabel = new JLabel("USERNAME:");
     JLabel passwordLabel = new JLabel("PASSWORD:");
     JLabel cPasswordLabel = new JLabel("CONFIRM PASSWORD:");
-    JTextField emailTextField = new JTextField();
+    JTextField usernameTextField = new JTextField();
     JPasswordField passwordField = new JPasswordField();
     JPasswordField cPasswordField = new JPasswordField();
     JButton createAccountButton = new JButton("Create Account");
@@ -44,10 +42,10 @@ public class RegisterPage extends JFrame implements ActionListener {
     }
     //Declares the size for the elements
     public void setLocationAndSize() {
-        emailLabel.setBounds(15, 325, 100, 30);
+        usernameLabel.setBounds(15, 325, 100, 30);
         passwordLabel.setBounds(15, 370, 100, 30);
         cPasswordLabel.setBounds(15, 415, 185, 30);
-        emailTextField.setBounds(150, 325, 150, 30);
+        usernameTextField.setBounds(150, 325, 150, 30);
         passwordField.setBounds(150, 370, 150, 30);
         cPasswordField.setBounds(150, 415, 150, 30);
 
@@ -57,10 +55,10 @@ public class RegisterPage extends JFrame implements ActionListener {
     }
     //Adds all the elements to the JFrame
     public void addLoginComponentsToContainer() {
-        frame.add(emailLabel);
+        frame.add(usernameLabel);
         frame.add(passwordLabel);
         frame.add(cPasswordLabel);
-        frame.add(emailTextField);
+        frame.add(usernameTextField);
         frame.add(passwordField);
         frame.add(cPasswordField);
 
@@ -86,10 +84,10 @@ public class RegisterPage extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         // Coding Part of LOGIN button
         if (e.getSource() == createAccountButton) {
-            String emailText;
+            String usernameText;
             String pwdText;
             String cpwdText;
-            emailText = emailTextField.getText();
+            usernameText = usernameTextField.getText();
             pwdText = passwordField.getText();
             cpwdText = cPasswordField.getText();
             //Connection
@@ -97,11 +95,17 @@ public class RegisterPage extends JFrame implements ActionListener {
             //Query
             DBQueries queries = new DBQueries();
 
-            if (pwdText.equals(cpwdText)) {
-                queries.inserting(emailText, pwdText, conn);
-                JOptionPane.showMessageDialog(this, "YAY :)");
-            } else {
+            if (pwdText.equals(cpwdText) && usernameText.length() >= 6 && pwdText.length() >= 6) {
+                queries.inserting(usernameText, pwdText, conn);
+                JOptionPane.showMessageDialog(this, "Account has been created");
+                frame.dispose();
+                new LoginFrame();
+            } else if(usernameText.length() >= 6 && pwdText.length() >= 6){
                 JOptionPane.showMessageDialog(this, "Passwords don't match");
+            } else if(usernameText.length() < 6){
+                JOptionPane.showMessageDialog(this, "Username needs to be atleast 6 characters in length");
+            } else if(pwdText.length() < 6 ){
+                JOptionPane.showMessageDialog(this, "Password needs to be atleast 6 characters in length");
             }
         }
     }

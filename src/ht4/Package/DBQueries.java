@@ -2,25 +2,29 @@ package ht4.Package;
 
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 public class DBQueries {
-    public void inserting(String email, String pwd, Connection conn) {
+    public void inserting(String userN, String pwd, Connection conn) {
         try {
             Statement s = conn.createStatement();
-            s.executeUpdate("INSERT INTO Table_Login (username, password) VALUES ('" + email + "','" + pwd + "')");
+            s.executeUpdate("INSERT INTO Table_Login (username, password) VALUES ('" + userN + "','" + pwd + "')");
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
     }
-    public boolean selecting(String email, String pwd, Connection conn) {
+    public boolean selecting(String userN, String pwd, Connection conn) {
         try {
-            Statement s = conn.createStatement();
-            s.executeUpdate("SELECT * FROM Table_Login WHERE (username = '" + email + "' AND password = '" + pwd + "')");
-            return true;
+            PreparedStatement st = (PreparedStatement) conn.prepareStatement("SELECT username, password FROM Table_Login WHERE (username = '" + userN + "' AND password = '" + pwd + "')");
+            ResultSet rs = st.executeQuery();
+
+            if (rs.next()) {
+                return true;
+            }
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
         return false;
     }
+
 }
