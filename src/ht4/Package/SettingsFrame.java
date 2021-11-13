@@ -121,22 +121,19 @@ public class SettingsFrame extends JFrame implements ActionListener{
             toggleNotificationsClicked = false;
         }
         else if (e.getSource() == changeLanguageButton) {
-
+            int user_id = User.id;
+            System.out.println(user_id);
         }
         else if (e.getSource() == deleteAccountButton) {
             int result = JOptionPane.showConfirmDialog(this,"Are you sure?","Delete Account Confirmation",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
             if (result == JOptionPane.YES_OPTION) {
                 Connection connection = DBConnection.DBC();
                 DBQueries queries = new DBQueries();
-                try {
-                    int userID = new User(15).rs.getInt(1);
-                    if (queries.deleteQuery(userID, connection)) {
-                        JOptionPane.showMessageDialog(this, "Account Deleted. You will be redirected to the Login menu.");
-                        settingsFrame.dispose();
-                        new LoginFrame();
-                    }
-                } catch (SQLException ex) {
-                    ex.printStackTrace();
+                int userID = User.id;
+                if (queries.deleteQuery(userID, connection)) {
+                    JOptionPane.showMessageDialog(this, "Account Deleted. You will be redirected to the Login menu.");
+                    settingsFrame.dispose();
+                    new LoginFrame();
                 }
             }
         }

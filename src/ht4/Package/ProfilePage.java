@@ -60,16 +60,16 @@ public class ProfilePage extends JFrame implements ActionListener {
 
         Connection conn = DBConnection.DBC();
         DBQueries queries = new DBQueries();
-        String[] info = queries.selectingUserInfo(conn);
-        String name = info[0];
-        String phone = info[1];
-        String email = info[2];
-        String age = info[3];
-        String heightFT = info[4];
-        String heightIN = info[5];
-        String cWeight = info[6];
-        String bmi = info[7];
-        String gWeight = info[8];
+//        String[] info = queries.selectingUserInfo(conn);
+//        String name = info[0];
+//        String phone = info[1];
+//        String email = info[2];
+//        String age = info[3];
+//        String heightFT = info[4];
+//        String heightIN = info[5];
+//        String cWeight = info[6];
+//        String bmi = info[7];
+//        String gWeight = info[8];
 
         setLayoutManager();
         setLocationAndSize();

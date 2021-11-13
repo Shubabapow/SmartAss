@@ -5,7 +5,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Connection;
+import java.sql.*;
 
 public class LoginFrame extends JFrame implements ActionListener {
     //instantiating all of our elements
@@ -92,6 +92,7 @@ public class LoginFrame extends JFrame implements ActionListener {
             //Query
             DBQueries queries = new DBQueries();
             if (queries.selectingUserLogin(userText, pwdText, conn)) {
+                User currentUser = new User(userText,pwdText);
                 frame.dispose();
                 new FrameHome();
 
