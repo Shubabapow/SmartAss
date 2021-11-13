@@ -98,7 +98,6 @@ public class LoginFrame extends JFrame implements ActionListener {
             } else {
                 JOptionPane.showMessageDialog(this, "Invalid Username or Password");
             }
-
         }
         if(e.getSource() == registerButton) {
             frame.dispose();

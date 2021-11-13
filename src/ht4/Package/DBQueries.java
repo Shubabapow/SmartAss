@@ -36,4 +36,18 @@ public class DBQueries {
         return false;
     }
 
+    //deletes the query row from database given the user ID.
+    public boolean deleteQuery(int userID, Connection conn) {
+        try {
+            PreparedStatement st = conn.prepareStatement("DELETE FROM Table_Login WHERE (id = '" + userID + "')");
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+                return true;
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return false;
+    }
+
 }

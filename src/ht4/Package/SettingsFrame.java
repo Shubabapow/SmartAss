@@ -6,6 +6,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.SQLException;
 
 public class SettingsFrame extends JFrame implements ActionListener{
     //instantiating all of our elements
@@ -19,9 +21,11 @@ public class SettingsFrame extends JFrame implements ActionListener{
     JButton dietTrackerSettingsButton = new JButton("Diet Tracker Settings");
     JButton toggleNotificationsButton = new JButton("Toggle Notifications");
     JButton logoutButton = new JButton("Log out");
+    JButton deleteAccountButton = new JButton("Delete Account");
 
     boolean darkThemeClicked = false; //ActionListener flag for sequential button clicking.
     boolean toggleNotificationsClicked = false;
+    Color defaultBackground = settingsFrame.getBackground();
 
     //Creating the constructor and setting the size of the JFrame along with calling our helper methods
     SettingsFrame() {
@@ -53,6 +57,7 @@ public class SettingsFrame extends JFrame implements ActionListener{
         changeLanguageButton.setBounds(85, 320, 180, 30);
         toggleNotificationsButton.setBounds(85, 280, 180, 30);
         darkThemeButton.setBounds(85, 240, 180, 30);
+        deleteAccountButton.setBounds(220,500,130,20);
     }
 
     //Adds all the elements to the JFrame
@@ -66,6 +71,7 @@ public class SettingsFrame extends JFrame implements ActionListener{
         settingsFrame.add(toggleNotificationsButton);
         settingsFrame.add(dietTrackerSettingsButton);
         settingsFrame.add(logoutButton);
+        settingsFrame.add(deleteAccountButton);
     }
 
     //Adds an action listener to the buttons
@@ -75,6 +81,8 @@ public class SettingsFrame extends JFrame implements ActionListener{
         darkThemeButton.addActionListener(this);
         logoutButton.addActionListener(this);
         toggleNotificationsButton.addActionListener(this);
+        deleteAccountButton.addActionListener(this);
+        changeLanguageButton.addActionListener(this);
     }
 
     //Setting the action in which each button will do.
@@ -99,7 +107,7 @@ public class SettingsFrame extends JFrame implements ActionListener{
             darkThemeClicked = true;
         }
         else if (e.getSource() == darkThemeButton && darkThemeClicked){
-            settingsFrame.getContentPane().setBackground(Color.LIGHT_GRAY);
+            settingsFrame.getContentPane().setBackground(defaultBackground);
             settingsLabel.setForeground(Color.BLACK);
             editProfileLabel.setForeground(Color.BLACK);
             darkThemeClicked = false;
@@ -111,6 +119,26 @@ public class SettingsFrame extends JFrame implements ActionListener{
         else if (e.getSource() == toggleNotificationsButton && toggleNotificationsClicked) {
             JOptionPane.showMessageDialog(settingsFrame,"Notifications turned on");
             toggleNotificationsClicked = false;
+        }
+//        else if (e.getSource() == changeLanguageButton) {
+//            FileBasedIndex.getInstance().getContainingFiles()
+//        }
+        else if (e.getSource() == deleteAccountButton) {
+            int result = JOptionPane.showConfirmDialog(settingsFrame,"Are you sure?","Delete Account Confirmation",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
+            if (result == JOptionPane.YES_OPTION) {
+                Connection connection = DBConnection.DBC();
+                DBQueries queries = new DBQueries();
+                try {
+                    int userID = new User("Rohan",queries).rs.getInt(1);
+                    if (queries.deleteQuery(userID, connection)) {
+                        JOptionPane.showMessageDialog(settingsFrame, "Account Deleted. You will be redirected to the Login menu.");
+                        settingsFrame.dispose();
+                        new LoginFrame();
+                    }
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            }
         }
     }
 }

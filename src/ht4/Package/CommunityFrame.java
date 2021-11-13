@@ -1,4 +1,5 @@
-/*  */
+/*Community provides a social media aspect that allows
+users to post and connect with friends.*/
 package ht4.Package;
 
 import javax.swing.*;
@@ -7,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class CommunityFrame extends JFrame implements ActionListener {
+    //declare necessary content within frame
     JFrame communityFrame = new JFrame();
     JLabel communityLabel = new JLabel("Community");
     JButton createPostButton = new JButton("Create Post");
@@ -18,6 +20,7 @@ public class CommunityFrame extends JFrame implements ActionListener {
     JTextArea notificationArea = new JTextArea("- Friend Requests (1)\n\n" + "- 3 People interacted with your post (3 hr. ago)");
     JButton backButton = new JButton("Back");
 
+    //Constructor to set window size and elements
     CommunityFrame() {
         communityFrame.setTitle("Community");
         communityFrame.setVisible(true);
@@ -31,10 +34,12 @@ public class CommunityFrame extends JFrame implements ActionListener {
 
     }
 
+    //create layout
     public void setLayoutManager() {
         communityFrame.setLayout(null);
     }
 
+    //determine location of each element
     public void setLocationAndSize() {
         communityLabel.setBounds(10,10,100,50);
         createPostButton.setBounds(10,60,120,30);
@@ -47,6 +52,7 @@ public class CommunityFrame extends JFrame implements ActionListener {
         notificationArea.setBounds(10,350,340,150);
     }
 
+    //add each element to the frame
     public void addComponentsToContainer() {
         communityFrame.add(communityLabel);
         communityFrame.add(backButton);
@@ -59,11 +65,13 @@ public class CommunityFrame extends JFrame implements ActionListener {
         communityFrame.add(notificationArea);
     }
 
+    //declare actionEvents for necessary elements
     public void addActionEvent() {
         createPostButton.addActionListener(this);
         backButton.addActionListener(this);
     }
 
+    //corresponding actionEvent logic
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == backButton) {

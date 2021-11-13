@@ -42,7 +42,7 @@ public class FrameHome extends JFrame implements ActionListener {
         browseButton.setBounds(205, 510, 150, 30);
         jlPic.setBounds(20, 25, 325, 300);
         logoutButton.setBounds(5, 10, 85, 30);
-        settingsButton.setBounds(265, 0, 80, 22);
+        settingsButton.setBounds(265, 10, 85, 30);
     }
     //Adds all the elements to the JFrame
     public void addHomeComponentsToContainer() {
