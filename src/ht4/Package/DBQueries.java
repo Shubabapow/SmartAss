@@ -22,6 +22,21 @@ public class DBQueries {
         return false;
     }
 
+    public String[] selectingUserInfo(Connection conn) {
+        String[] info = new String[9];
+        try {
+            PreparedStatement st = conn.prepareStatement("SELECT * FROM Table_Login WHERE (name = '" + info[0] + "', phone = '" + info[1] + "', email = '" + info[2] + "', age = '" + info[3] + "', [height ft] = '" + info[4] + "', [height in] = '" + info[5] + "', [Current weight] = '" + info[6] + "', bmi = '" + info[7] + "', [Goal weight] = '" + info[8] + "' WHERE id = '11')");
+
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+                return info;
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return null;
+    }
+
     public boolean selectingUserLogin(String userN, String pwd, Connection conn) {
         try {
             PreparedStatement st = conn.prepareStatement("SELECT * FROM Table_Login WHERE (username = '" + userN + "' AND password = '" + pwd + "')");
