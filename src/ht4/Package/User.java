@@ -8,9 +8,9 @@ public class User {
     ResultSet rs = null;
 
     //user object is created from searching the row in database that matches the desired name.
-    public User(String name, DBQueries queries) {
+    public User(int userID) {
         try {
-            PreparedStatement st = connection.prepareStatement("SELECT * FROM Table_Login WHERE (Name = '" + name + "')");
+            PreparedStatement st = connection.prepareStatement("SELECT * FROM Table_Login WHERE (id = '" + userID + "')");
             rs = st.executeQuery();
             rs.next(); //move pointer to the resultSet (database query/entry with user info)
         } catch (SQLException ex) {

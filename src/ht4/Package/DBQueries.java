@@ -40,7 +40,6 @@ public class DBQueries {
     public boolean selectingUserLogin(String userN, String pwd, Connection conn) {
         try {
             PreparedStatement st = conn.prepareStatement("SELECT * FROM Table_Login WHERE (username = '" + userN + "' AND password = '" + pwd + "')");
-
             ResultSet rs = st.executeQuery();
             if (rs.next()) {
                 return true;
@@ -53,16 +52,14 @@ public class DBQueries {
 
     //deletes the query row from database given the user ID.
     public boolean deleteQuery(int userID, Connection conn) {
+        int numDeleted = 0;
         try {
-            PreparedStatement st = conn.prepareStatement("DELETE FROM Table_Login WHERE (id = '" + userID + "')");
-            ResultSet rs = st.executeQuery();
-            if (rs.next()) {
-                return true;
-            }
+            Statement st = conn.createStatement();
+            numDeleted = st.executeUpdate("DELETE FROM Table_Login WHERE (id = '" + userID + "')");
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-        return false;
+        return numDeleted != 0;
     }
 
 }

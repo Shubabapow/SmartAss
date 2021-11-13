@@ -113,25 +113,25 @@ public class SettingsFrame extends JFrame implements ActionListener{
             darkThemeClicked = false;
         }
         else if (e.getSource() == toggleNotificationsButton && !toggleNotificationsClicked) {
-            JOptionPane.showMessageDialog(settingsFrame,"Notifications turned off");
+            JOptionPane.showMessageDialog(this,"Notifications turned off");
             toggleNotificationsClicked = true;
         }
         else if (e.getSource() == toggleNotificationsButton && toggleNotificationsClicked) {
-            JOptionPane.showMessageDialog(settingsFrame,"Notifications turned on");
+            JOptionPane.showMessageDialog(this,"Notifications turned on");
             toggleNotificationsClicked = false;
         }
-//        else if (e.getSource() == changeLanguageButton) {
-//            FileBasedIndex.getInstance().getContainingFiles()
-//        }
+        else if (e.getSource() == changeLanguageButton) {
+
+        }
         else if (e.getSource() == deleteAccountButton) {
-            int result = JOptionPane.showConfirmDialog(settingsFrame,"Are you sure?","Delete Account Confirmation",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
+            int result = JOptionPane.showConfirmDialog(this,"Are you sure?","Delete Account Confirmation",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
             if (result == JOptionPane.YES_OPTION) {
                 Connection connection = DBConnection.DBC();
                 DBQueries queries = new DBQueries();
                 try {
-                    int userID = new User("Rohan",queries).rs.getInt(1);
+                    int userID = new User(15).rs.getInt(1);
                     if (queries.deleteQuery(userID, connection)) {
-                        JOptionPane.showMessageDialog(settingsFrame, "Account Deleted. You will be redirected to the Login menu.");
+                        JOptionPane.showMessageDialog(this, "Account Deleted. You will be redirected to the Login menu.");
                         settingsFrame.dispose();
                         new LoginFrame();
                     }
