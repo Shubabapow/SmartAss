@@ -14,7 +14,7 @@ public class SettingsFrame extends JFrame implements ActionListener{
     JFrame settingsFrame = new JFrame();
     JLabel settingsLabel = new JLabel("Settings");
     JButton backButton = new JButton("Back");
-    JButton profileButton = new JButton(new ImageIcon("/icons/profilePic.png"));
+    JButton profileButton = new JButton(new ImageIcon("./src/ht4.Package/icons/profile-icon.png"));
     JLabel editProfileLabel = new JLabel("Edit Profile");
     JButton darkThemeButton = new JButton("Dark Theme");
     JButton changeLanguageButton = new JButton("Change Language");
@@ -23,12 +23,17 @@ public class SettingsFrame extends JFrame implements ActionListener{
     JButton logoutButton = new JButton("Log out");
     JButton deleteAccountButton = new JButton("Delete Account");
 
-    boolean darkThemeClicked = false; //ActionListener flag for sequential button clicking.
-    boolean toggleNotificationsClicked = false;
-    Color defaultBackground = settingsFrame.getBackground();
+    static boolean darkThemeClicked = false; //ActionListener flag for sequential button clicking.
+    static boolean toggleNotificationsClicked = false;
+    static Color defaultBackground = UIManager.getColor("Panel.background");
 
     //Creating the constructor and setting the size of the JFrame along with calling our helper methods
     SettingsFrame() {
+        if (darkThemeClicked) {
+            settingsFrame.getContentPane().setBackground(Color.DARK_GRAY);
+            settingsLabel.setForeground(Color.WHITE);
+            editProfileLabel.setForeground(Color.WHITE);
+        }
         settingsFrame.setTitle("Settings");
         settingsFrame.setVisible(true);
         settingsFrame.setBounds(10, 10, 370, 600);
@@ -98,19 +103,11 @@ public class SettingsFrame extends JFrame implements ActionListener{
         }
         else if (e.getSource() == logoutButton) {
             settingsFrame.dispose();
+            darkThemeClicked = false;
             new LoginFrame();
         }
-        else if (e.getSource() == darkThemeButton && !darkThemeClicked) {
-            settingsFrame.getContentPane().setBackground(Color.DARK_GRAY);
-            settingsLabel.setForeground(Color.WHITE);
-            editProfileLabel.setForeground(Color.WHITE);
-            darkThemeClicked = true;
-        }
-        else if (e.getSource() == darkThemeButton && darkThemeClicked){
-            settingsFrame.getContentPane().setBackground(defaultBackground);
-            settingsLabel.setForeground(Color.BLACK);
-            editProfileLabel.setForeground(Color.BLACK);
-            darkThemeClicked = false;
+        else if (e.getSource() == darkThemeButton) {
+            darkTheme(settingsFrame);
         }
         else if (e.getSource() == toggleNotificationsButton && !toggleNotificationsClicked) {
             JOptionPane.showMessageDialog(this,"Notifications turned off");
@@ -121,8 +118,7 @@ public class SettingsFrame extends JFrame implements ActionListener{
             toggleNotificationsClicked = false;
         }
         else if (e.getSource() == changeLanguageButton) {
-            int user_id = User.id;
-            System.out.println(user_id);
+
         }
         else if (e.getSource() == deleteAccountButton) {
             int result = JOptionPane.showConfirmDialog(this,"Are you sure?","Delete Account Confirmation",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
@@ -136,6 +132,21 @@ public class SettingsFrame extends JFrame implements ActionListener{
                     new LoginFrame();
                 }
             }
+        }
+    }
+
+    public void darkTheme(JFrame frame) {
+        if (!darkThemeClicked) {
+            frame.getContentPane().setBackground(Color.DARK_GRAY);
+            settingsLabel.setForeground(Color.WHITE);
+            editProfileLabel.setForeground(Color.WHITE);
+            darkThemeClicked = true;
+        }
+        else {
+            frame.getContentPane().setBackground(defaultBackground);
+            settingsLabel.setForeground(Color.BLACK);
+            editProfileLabel.setForeground(Color.BLACK);
+            darkThemeClicked = false;
         }
     }
 }

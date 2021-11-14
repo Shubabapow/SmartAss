@@ -15,6 +15,10 @@ public class StepPage extends JFrame implements ActionListener {
 
     //Creating the constructor and setting the size of the JFrame along with calling our helper methods
     StepPage() {
+        if (SettingsFrame.darkThemeClicked) {
+            stepFrame.getContentPane().setBackground(Color.DARK_GRAY);
+            stepFrame.getContentPane().setForeground(Color.WHITE);
+        }
         stepFrame.setTitle("SmartAss");
         stepFrame.setBounds(10, 10, 370, 600);
         stepFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

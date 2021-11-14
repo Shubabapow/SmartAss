@@ -20,7 +20,10 @@ public class FrameHome extends JFrame implements ActionListener {
 
     //Creating the constructor and setting the size of the JFrame along with calling our helper methods
     FrameHome() {
-
+        if (SettingsFrame.darkThemeClicked) {
+            frameHome.getContentPane().setBackground(Color.DARK_GRAY);
+            frameHome.getContentPane().setForeground(Color.WHITE);
+        }
         frameHome.setTitle("SmartAss");
         frameHome.setVisible(true);
         frameHome.setBounds(10, 10, 370, 600);
@@ -78,6 +81,7 @@ public class FrameHome extends JFrame implements ActionListener {
         }
         if (e.getSource() == logoutButton) {
             frameHome.dispose();
+            SettingsFrame.darkThemeClicked = false;
             new LoginFrame();
         }
         if (e.getSource() == settingsButton) {

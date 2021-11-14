@@ -22,6 +22,13 @@ public class CommunityFrame extends JFrame implements ActionListener {
 
     //Constructor to set window size and elements
     CommunityFrame() {
+        if (SettingsFrame.darkThemeClicked) {
+            communityFrame.getContentPane().setBackground(Color.DARK_GRAY);
+            communityLabel.setForeground(Color.WHITE);
+            searchLabel.setForeground(Color.WHITE);
+            newsFeedLabel.setForeground(Color.WHITE);
+            notificationLabel.setForeground(Color.WHITE);
+        }
         communityFrame.setTitle("Community");
         communityFrame.setVisible(true);
         communityFrame.setBounds(10, 10, 370, 600);

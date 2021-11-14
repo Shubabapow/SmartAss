@@ -2,6 +2,7 @@
 package ht4.Package;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -28,6 +29,16 @@ public class DietPlan extends JFrame implements ActionListener {
 
     //Creating the constructor and setting the size of the JFrame along with calling our helper methods
     DietPlan() {
+        if (SettingsFrame.darkThemeClicked) {
+            dietFrame.getContentPane().setBackground(Color.DARK_GRAY);
+            Mon.setForeground(Color.WHITE);
+            Tue.setForeground(Color.WHITE);
+            Wed.setForeground(Color.WHITE);
+            Thu.setForeground(Color.WHITE);
+            Fri.setForeground(Color.WHITE);
+            Sat.setForeground(Color.WHITE);
+            Sun.setForeground(Color.WHITE);
+        }
         dietFrame.setTitle("Diet Plan");
         dietFrame.setVisible(true);
         dietFrame.setBounds(10, 10, 370, 600);

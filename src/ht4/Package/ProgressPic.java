@@ -21,6 +21,10 @@ public class ProgressPic extends JFrame implements ActionListener{
 
     //Creating the constructor and setting the size of the JFrame along with calling our helper methods
     ProgressPic() {
+        if (SettingsFrame.darkThemeClicked) {
+            progressPic.getContentPane().setBackground(Color.DARK_GRAY);
+            progressPic.getContentPane().setForeground(Color.WHITE);
+        }
         progressPic.setTitle("SmartAss");
         progressPic.setVisible(true);
         progressPic.setBounds(10, 10, 370, 600);
