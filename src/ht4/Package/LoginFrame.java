@@ -24,7 +24,10 @@ public class LoginFrame extends JFrame implements ActionListener {
 
     //Creating the constructor and setting the size of the JFrame along with calling our helper methods
     LoginFrame() {
-
+        if (SettingsFrame.darkThemeClicked) {
+            frame.getContentPane().setBackground(Color.DARK_GRAY);
+            frame.getContentPane().setForeground(Color.WHITE);
+        }
         frame.setTitle("SmartAss");
         frame.setVisible(true);
         frame.setBounds(10, 10, 370, 600);
@@ -92,7 +95,7 @@ public class LoginFrame extends JFrame implements ActionListener {
             //Query
             DBQueries queries = new DBQueries();
             if (queries.selectingUserLogin(userText, pwdText, conn)) {
-                User currentUser = new User(userText,pwdText);
+                User currentUser = new User(userText,pwdText); //used to access user's info throughout project files
                 frame.dispose();
                 new FrameHome();
 
