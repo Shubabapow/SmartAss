@@ -4,28 +4,30 @@ package ht4.Package;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
+import java.io.IOException;
 import java.sql.Connection;
-import java.sql.SQLException;
+import java.util.*;
 
 public class SettingsFrame extends JFrame implements ActionListener{
     //instantiating all of our elements
     JFrame settingsFrame = new JFrame();
-    JLabel settingsLabel = new JLabel("Settings");
+    static JLabel settingsLabel = new JLabel("Settings");
     JButton backButton = new JButton("Back");
-    JButton profileButton = new JButton(new ImageIcon("./src/ht4.Package/icons/profile-icon.png"));
+    JButton profileButton = new JButton(new ImageIcon("./Resources/profile-icon.png"));
     JLabel editProfileLabel = new JLabel("Edit Profile");
     JButton darkThemeButton = new JButton("Dark Theme");
     JButton changeLanguageButton = new JButton("Change Language");
     JButton dietTrackerSettingsButton = new JButton("Diet Tracker Settings");
-    JButton toggleNotificationsButton = new JButton("Toggle Notifications");
+    JToggleButton toggleNotificationsButton = new JToggleButton("Toggle Notifications");
     JButton logoutButton = new JButton("Log out");
     JButton deleteAccountButton = new JButton("Delete Account");
 
     static boolean darkThemeClicked = false; //ActionListener flag for sequential button clicking.
-    static boolean toggleNotificationsClicked = false;
     static Color defaultBackground = UIManager.getColor("Panel.background");
+    static String currentLanguage = "";
+    static JLabel lbl = new JLabel();
+    static JPanel panel;
 
     //Creating the constructor and setting the size of the JFrame along with calling our helper methods
     SettingsFrame() {
@@ -43,7 +45,6 @@ public class SettingsFrame extends JFrame implements ActionListener{
         setLocationAndSize();
         addComponentsToContainer();
         addActionEvent();
-
     }
 
     //Setting layout to null, which ends up just using the default layout
@@ -77,6 +78,7 @@ public class SettingsFrame extends JFrame implements ActionListener{
         settingsFrame.add(dietTrackerSettingsButton);
         settingsFrame.add(logoutButton);
         settingsFrame.add(deleteAccountButton);
+        settingsFrame.add(lbl);
     }
 
     //Adds an action listener to the buttons
@@ -88,6 +90,7 @@ public class SettingsFrame extends JFrame implements ActionListener{
         toggleNotificationsButton.addActionListener(this);
         deleteAccountButton.addActionListener(this);
         changeLanguageButton.addActionListener(this);
+        dietTrackerSettingsButton.addActionListener(this);
     }
 
     //Setting the action in which each button will do.
@@ -109,16 +112,67 @@ public class SettingsFrame extends JFrame implements ActionListener{
         else if (e.getSource() == darkThemeButton) {
             darkTheme(settingsFrame);
         }
-        else if (e.getSource() == toggleNotificationsButton && !toggleNotificationsClicked) {
-            JOptionPane.showMessageDialog(this,"Notifications turned off");
-            toggleNotificationsClicked = true;
-        }
-        else if (e.getSource() == toggleNotificationsButton && toggleNotificationsClicked) {
-            JOptionPane.showMessageDialog(this,"Notifications turned on");
-            toggleNotificationsClicked = false;
+        else if (e.getSource() == toggleNotificationsButton) {
+            toggleNotifications();
         }
         else if (e.getSource() == changeLanguageButton) {
-
+            panel = (JPanel) lbl.getParent();
+            JPopupMenu langMenu = new JPopupMenu("Supported Languages");
+            if (currentLanguage.equals("")) {
+                currentLanguage = "en";
+            }
+            langMenu.add(new JMenuItem(new AbstractAction("English") {
+                public void actionPerformed(ActionEvent ae) {
+                    try {
+                        if (currentLanguage.equals("ru")) {
+                            translate(panel,"ru","en");
+                        }
+                        else if (currentLanguage.equals("fr")) {
+                            translate(panel,"fr","en");
+                        }
+                        currentLanguage = "en";
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                }
+            }));
+            langMenu.add(new JMenuItem(new AbstractAction("French (Français)") {
+                public void actionPerformed(ActionEvent ae) {
+                    try {
+                        if (currentLanguage.equals("ru")) {
+                            translate(panel,"ru","fr");
+                        }
+                        else if (currentLanguage.equals("en")) {
+                            translate(panel,"en","fr");
+                        }
+                        currentLanguage = "fr";
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                }
+            }));
+            langMenu.add(new JMenuItem(new AbstractAction("Russian (Pусский)") {
+                public void actionPerformed(ActionEvent ae) {
+                    try {
+                        if (currentLanguage.equals("en")) {
+                            translate(panel,"en","ru");
+                        }
+                        else if (currentLanguage.equals("fr")) {
+                            translate(panel,"fr","ru");
+                        }
+                        currentLanguage = "ru";
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                }
+            }));
+            langMenu.setPopupSize(200,120);
+            langMenu.setVisible(true);
+            langMenu.show(settingsFrame,80,220);
+        }
+        else if (e.getSource() == dietTrackerSettingsButton) {
+            settingsFrame.dispose();
+            new DietTrackerSettingsFrame();
         }
         else if (e.getSource() == deleteAccountButton) {
             int result = JOptionPane.showConfirmDialog(this,"Are you sure?","Delete Account Confirmation",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
@@ -147,6 +201,32 @@ public class SettingsFrame extends JFrame implements ActionListener{
             settingsLabel.setForeground(Color.BLACK);
             editProfileLabel.setForeground(Color.BLACK);
             darkThemeClicked = false;
+        }
+    }
+
+    public void toggleNotifications() {
+        if (toggleNotificationsButton.isSelected()) {
+            JOptionPane.showMessageDialog(this, "Notifications turned off");
+        }
+        else {
+            JOptionPane.showMessageDialog(this, "Notifications turned on");
+        }
+    }
+
+    public static void translate(JPanel panel, String langFrom, String langTo) throws IOException {
+        for (Component c : panel.getComponents()) {
+            if (c instanceof JLabel) {
+                ((JLabel) c).setText(Translator.translate(langFrom,langTo, ((JLabel) c).getText()));
+            }
+            else if (c instanceof JButton) {
+                ((JButton) c).setText(Translator.translate(langFrom,langTo, ((JButton) c).getText()));
+            }
+            else if (c instanceof JTextField) {
+                ((JTextField) c).setText(Translator.translate(langFrom,langTo, ((JTextField) c).getText()));
+            }
+            else if (c instanceof JTextArea) {
+                ((JTextArea) c).setText(Translator.translate(langFrom,langTo, ((JTextArea) c).getText()));
+            }
         }
     }
 }

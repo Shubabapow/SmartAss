@@ -46,6 +46,7 @@ public class DietPlan extends JFrame implements ActionListener {
     JLabel Fri = new JLabel("Friday");
     JLabel Sat = new JLabel("Saturday");
     JLabel Sun = new JLabel("Sunday");
+    JLabel calorieGoalLabel = new JLabel("Calorie Goal: " + DietTrackerSettingsFrame.calorieGoal);
 
     JTextArea monCal = new JTextArea("Calories: ");
     JTextArea tueCal = new JTextArea("Calories: ");
@@ -58,6 +59,16 @@ public class DietPlan extends JFrame implements ActionListener {
 
     //Creating the constructor and setting the size of the JFrame along with calling our helper methods
     DietPlan() {
+        if (SettingsFrame.darkThemeClicked) {
+            dietFrame.getContentPane().setBackground(Color.DARK_GRAY);
+            Mon.setForeground(Color.WHITE);
+            Tue.setForeground(Color.WHITE);
+            Wed.setForeground(Color.WHITE);
+            Thu.setForeground(Color.WHITE);
+            Fri.setForeground(Color.WHITE);
+            Sat.setForeground(Color.WHITE);
+            Sun.setForeground(Color.WHITE);
+        }
         dietFrame.setTitle("Diet Plan");
         dietFrame.setVisible(true);
         dietFrame.setBounds(10, 10, 370, 600);
@@ -103,6 +114,7 @@ public class DietPlan extends JFrame implements ActionListener {
         Fri.setBounds(10, 320,60,25);
         Sat.setBounds(10, 400,60,25);
         Sun.setBounds(10, 480,60,25);
+        calorieGoalLabel.setBounds(80, 0,130,25);
 //        monText.setBounds(10, 25, 250, 50);
 //        tueText.setBounds(10, 105, 250, 50);
 //        wedText.setBounds(10, 185, 250, 50);
@@ -172,6 +184,9 @@ public class DietPlan extends JFrame implements ActionListener {
         dietFrame.add(Fri);
         dietFrame.add(Sat);
         dietFrame.add(Sun);
+        if (DietTrackerSettingsFrame.displayCalorieTotalButton.isSelected()) {
+            dietFrame.add(calorieGoalLabel);
+        }
 
         dietFrame.add(monMenu);
         dietFrame.add(tueMenu);
