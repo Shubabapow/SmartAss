@@ -116,7 +116,9 @@ public class BrowsePage extends JFrame implements ActionListener {
             new CommunityFrame();
         }
         if (e.getSource() == stepCountButton) {
-            JOptionPane.showMessageDialog(this, "COMING SOON...");
+            //JOptionPane.showMessageDialog(this, "COMING SOON...");
+            browseFrame.dispose();
+            new StepPage();
         }
     }
 
