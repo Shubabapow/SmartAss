@@ -13,6 +13,7 @@ public class DietTrackerSettingsFrame extends JFrame implements ActionListener {
     JButton backButton = new JButton("Back");
     JButton setCalorieGoalButton = new JButton("Set Calorie Goal");
 
+    //variables used for applying settings to whole project
     static JToggleButton displayCalorieTotalButton = new JToggleButton("Display Calorie Goal");
     static JButton displayTimestampsButton = new JButton("Show Meal Timestamps");
     static boolean calorieGoalSelected = false;

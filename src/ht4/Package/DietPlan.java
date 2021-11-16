@@ -39,13 +39,15 @@ public class DietPlan extends JFrame implements ActionListener {
     JScrollPane satMenu;
     JScrollPane sunMenu;
 
-    JLabel Mon = new JLabel("Monday");
-    JLabel Tue = new JLabel("Tuesday");
-    JLabel Wed = new JLabel("Wednesday");
-    JLabel Thu = new JLabel("Thursday");
-    JLabel Fri = new JLabel("Friday");
-    JLabel Sat = new JLabel("Saturday");
-    JLabel Sun = new JLabel("Sunday");
+    //array to hold labels for each day
+    JLabel[] days = {new JLabel("Monday"), new JLabel("Tuesday"), new JLabel("Wednesday"), new JLabel("Thursday"), new JLabel("Friday"), new JLabel("Saturday"), new JLabel("Sunday")};
+//    JLabel Mon = new JLabel("Monday");
+//    JLabel Tue = new JLabel("Tuesday");
+//    JLabel Wed = new JLabel("Wednesday");
+//    JLabel Thu = new JLabel("Thursday");
+//    JLabel Fri = new JLabel("Friday");
+//    JLabel Sat = new JLabel("Saturday");
+//    JLabel Sun = new JLabel("Sunday");
     JLabel calorieGoalLabel = new JLabel("Calorie Goal: " + DietTrackerSettingsFrame.calorieGoal);
 
     JTextArea monCal = new JTextArea("Calories: ");
@@ -59,15 +61,13 @@ public class DietPlan extends JFrame implements ActionListener {
 
     //Creating the constructor and setting the size of the JFrame along with calling our helper methods
     DietPlan() {
+        //dark theme from settings check
         if (SettingsFrame.darkThemeClicked) {
             dietFrame.getContentPane().setBackground(Color.DARK_GRAY);
-            Mon.setForeground(Color.WHITE);
-            Tue.setForeground(Color.WHITE);
-            Wed.setForeground(Color.WHITE);
-            Thu.setForeground(Color.WHITE);
-            Fri.setForeground(Color.WHITE);
-            Sat.setForeground(Color.WHITE);
-            Sun.setForeground(Color.WHITE);
+            for (JLabel day : days) {
+                day.setForeground(Color.WHITE);
+            }
+            calorieGoalLabel.setForeground(Color.WHITE);
         }
         dietFrame.setTitle("Diet Plan");
         dietFrame.setVisible(true);
@@ -107,14 +107,17 @@ public class DietPlan extends JFrame implements ActionListener {
     public void setLocationAndSize() {
         //DietPlan.setBounds(10, 10, 100, 30);
         backButton.setBounds(265, 0, 80, 22);
-        Mon.setBounds(10, 0,60,25);
-        Tue.setBounds(10, 80,60,25);
-        Wed.setBounds(10, 160,80,25);
-        Thu.setBounds(10, 240,60,25);
-        Fri.setBounds(10, 320,60,25);
-        Sat.setBounds(10, 400,60,25);
-        Sun.setBounds(10, 480,60,25);
-        calorieGoalLabel.setBounds(80, 0,130,25);
+        for (int i=0; i<7; i++) {
+            days[i].setBounds(10,80*i,250,25);
+        }
+//        Mon.setBounds(10, 0,60,25);
+//        Tue.setBounds(10, 80,60,25);
+//        Wed.setBounds(10, 160,80,25);
+//        Thu.setBounds(10, 240,60,25);
+//        Fri.setBounds(10, 320,60,25);
+//        Sat.setBounds(10, 400,60,25);
+//        Sun.setBounds(10, 480,60,25);
+
 //        monText.setBounds(10, 25, 250, 50);
 //        tueText.setBounds(10, 105, 250, 50);
 //        wedText.setBounds(10, 185, 250, 50);
@@ -177,15 +180,26 @@ public class DietPlan extends JFrame implements ActionListener {
     public void addPlanComponentsToContainer() {
         //dietFrame.add(DietPlan);
         dietFrame.add(backButton);
-        dietFrame.add(Mon);
-        dietFrame.add(Tue);
-        dietFrame.add(Wed);
-        dietFrame.add(Thu);
-        dietFrame.add(Fri);
-        dietFrame.add(Sat);
-        dietFrame.add(Sun);
+        for (JLabel day: days) {
+            dietFrame.add(day);
+        }
+//        dietFrame.add(Mon);
+//        dietFrame.add(Tue);
+//        dietFrame.add(Wed);
+//        dietFrame.add(Thu);
+//        dietFrame.add(Fri);
+//        dietFrame.add(Sat);
+//        dietFrame.add(Sun);
+
+        //adds calorie goal display if enabled in settings, right justifies text along ComboBox)
         if (DietTrackerSettingsFrame.displayCalorieTotalButton.isSelected()) {
-            dietFrame.add(calorieGoalLabel);
+            for (JLabel day: days) {
+                if (day.getText().contains("Wednesday")) {
+                    day.setText(day.getText() + "                        Calorie Goal: " + DietTrackerSettingsFrame.calorieGoal);
+                    continue;
+                }
+                day.setText(day.getText() + "                            Calorie Goal: " + DietTrackerSettingsFrame.calorieGoal);
+            }
         }
 
         dietFrame.add(monMenu);

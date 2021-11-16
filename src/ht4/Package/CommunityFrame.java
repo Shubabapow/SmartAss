@@ -91,7 +91,7 @@ public class CommunityFrame extends JFrame implements ActionListener {
         else if (e.getSource() == createPostButton) {
             JPanel postPanel = new JPanel(new BorderLayout());
             JTextArea writePostArea = new JTextArea();
-            communityFrame.add(postPanel);
+            communityFrame.add(postPanel,BorderLayout.CENTER);
             postPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
             postPanel.setBackground(SettingsFrame.defaultBackground);
             postPanel.setBounds(40,100,260,300);
