@@ -92,7 +92,7 @@ public class LoginFrame extends JFrame implements ActionListener {
             //Query
             DBQueries queries = new DBQueries();
             if (queries.selectingUserLogin(userText, pwdText, conn)) {
-                User currentUser = new User(userText,pwdText);
+                new User(userText,pwdText);
                 frame.dispose();
                 new FrameHome();
 
