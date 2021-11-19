@@ -16,7 +16,7 @@ public class CalendarPage extends JFrame implements ActionListener {
     JButton exitButton = new JButton("Exit");
 
     CalendarPage() {
-        calFrame.setTitle("SmartAss");
+        calFrame.setTitle("Calendar");
         calFrame.setBounds(10, 10, 370, 600);
         calFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         calFrame.setVisible(true);
@@ -64,6 +64,15 @@ public class CalendarPage extends JFrame implements ActionListener {
         calFrame.add(pane, BorderLayout.CENTER);
         calFrame.add(panel2, BorderLayout.SOUTH);
         this.updateMonth();
+        if (SettingsFrame.darkThemeClicked) {
+            calFrame.setBackground(Color.DARK_GRAY);
+            panel.setBackground(Color.DARK_GRAY);
+            panel2.setBackground(Color.DARK_GRAY);
+            label.setForeground(Color.WHITE);
+            table.setBackground(Color.DARK_GRAY);
+            table.setForeground(Color.WHITE);
+            pane.setBackground(Color.DARK_GRAY);
+        }
     }
 
     void updateMonth() {

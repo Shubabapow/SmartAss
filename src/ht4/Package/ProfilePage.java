@@ -5,6 +5,7 @@ the user will be able to change their user information.*/
 package ht4.Package;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
@@ -51,6 +52,19 @@ public class ProfilePage extends JFrame implements ActionListener {
 
     //Creating the constructor and setting the size of the JFrame along with calling our helper methods
     ProfilePage() {
+        if (SettingsFrame.darkThemeClicked) {
+            profileFrame.getContentPane().setBackground(Color.DARK_GRAY);
+            titleName.setForeground(Color.WHITE);
+            titlePhone.setForeground(Color.WHITE);
+            titleEmail.setForeground(Color.WHITE);
+            titleAge.setForeground(Color.WHITE);
+            titleHeight.setForeground(Color.WHITE);
+            titleCWeight.setForeground(Color.WHITE);
+            titleGWeight.setForeground(Color.WHITE);
+            titleBMI.setForeground(Color.WHITE);
+            titleFT.setForeground(Color.WHITE);
+            titleIN.setForeground(Color.WHITE);
+        }
         profileFrame.setTitle("SmartAss");
         profileFrame.setBounds(10, 10, 370, 600);
         profileFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

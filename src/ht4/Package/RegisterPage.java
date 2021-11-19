@@ -2,6 +2,7 @@
 package ht4.Package;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
@@ -26,7 +27,13 @@ public class RegisterPage extends JFrame implements ActionListener {
 
     //Creating the constructor and setting the size of the JFrame along with calling our helper methods
     RegisterPage() {
-
+        if (SettingsFrame.darkThemeClicked) {
+            frame.getContentPane().setBackground(Color.DARK_GRAY);
+            usernameLabel.setForeground(Color.WHITE);
+            passwordLabel.setForeground(Color.WHITE);
+            cPasswordLabel.setForeground(Color.WHITE);
+            registerLabel.setForeground(Color.WHITE);
+        }
         frame.setTitle("SmartAss");
         frame.setVisible(true);
         frame.setBounds(10, 10, 370, 600);

@@ -3,6 +3,7 @@ This is the page where the user can log their progress and their motivation. */
 package ht4.Package;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -23,6 +24,13 @@ public class JournalPage extends JFrame implements ActionListener {
 
     //Creating the constructor and setting the size of the JFrame along with calling our helper methods
     JournalPage() {
+        if (SettingsFrame.darkThemeClicked) {
+            journalFrame.getContentPane().setBackground(Color.DARK_GRAY);
+            titlePage.setForeground(Color.WHITE);
+            titleMot.setForeground(Color.WHITE);
+            titleDate.setForeground(Color.WHITE);
+            titleProg.setForeground(Color.WHITE);
+        }
         journalFrame.setTitle("SmartAss");
         journalFrame.setBounds(10, 10, 370, 600);
         journalFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

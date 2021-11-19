@@ -24,7 +24,10 @@ public class LoginFrame extends JFrame implements ActionListener {
 
     //Creating the constructor and setting the size of the JFrame along with calling our helper methods
     LoginFrame() {
-
+        if (SettingsFrame.darkThemeClicked) {
+            frame.getContentPane().setBackground(Color.DARK_GRAY);
+            frame.getContentPane().setForeground(Color.WHITE);
+        }
         frame.setTitle("SmartAss");
         frame.setVisible(true);
         frame.setBounds(10, 10, 370, 600);

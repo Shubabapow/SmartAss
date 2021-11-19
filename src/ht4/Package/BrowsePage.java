@@ -7,6 +7,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 public class BrowsePage extends JFrame implements ActionListener {
     //instantiating all of our elements
@@ -22,6 +23,10 @@ public class BrowsePage extends JFrame implements ActionListener {
 
     //Creating the constructor and setting the size of the JFrame along with calling our helper methods
     BrowsePage() {
+        if (SettingsFrame.darkThemeClicked) {
+            browseFrame.getContentPane().setBackground(Color.DARK_GRAY);
+            browseFrame.getContentPane().setForeground(Color.WHITE);
+        }
         browseFrame.setTitle("SmartAss");
         browseFrame.setBounds(10, 10, 370, 600);
         browseFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -112,7 +117,9 @@ public class BrowsePage extends JFrame implements ActionListener {
             new CommunityFrame();
         }
         if (e.getSource() == stepCountButton) {
-            JOptionPane.showMessageDialog(this, "COMING SOON...");
+            //JOptionPane.showMessageDialog(this, "COMING SOON...");
+            browseFrame.dispose();
+            new StepPage();
         }
     }
 
