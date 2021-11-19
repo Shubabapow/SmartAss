@@ -5,6 +5,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 public class FrameHome extends JFrame implements ActionListener {
     //instantiating all of our elements
@@ -54,6 +55,15 @@ public class FrameHome extends JFrame implements ActionListener {
         frameHome.add(jlPic);
         frameHome.add(logoutButton);
         frameHome.add(settingsButton);
+
+        //FOR LANGUAGE TRANSLATION
+//        try {
+//            if (SettingsFrame.languageChanged) {
+//                SettingsFrame.translate((JPanel) jlPic.getParent(), SettingsFrame.currentLanguage, SettingsFrame.currentLanguage);
+//            }
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
     }
     //Adds an action listener to the buttons
     public void addActionEvent() {

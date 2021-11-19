@@ -191,11 +191,15 @@ public class DietPlan extends JFrame implements ActionListener {
 //        dietFrame.add(Sat);
 //        dietFrame.add(Sun);
 
-        //adds calorie goal display if enabled in settings, right justifies text along ComboBox)
+        //adds calorie goal display if enabled in settings, right justifies text along JComboBoxes
         if (DietTrackerSettingsFrame.displayCalorieTotalButton.isSelected()) {
             for (JLabel day: days) {
                 if (day.getText().contains("Wednesday")) {
                     day.setText(day.getText() + "                        Calorie Goal: " + DietTrackerSettingsFrame.calorieGoal);
+                    continue;
+                }
+                else if (day.getText().contains("Friday") || day.getText().contains("Sunday")) {
+                    day.setText(day.getText() + "                              Calorie Goal: " + DietTrackerSettingsFrame.calorieGoal);
                     continue;
                 }
                 day.setText(day.getText() + "                            Calorie Goal: " + DietTrackerSettingsFrame.calorieGoal);

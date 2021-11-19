@@ -22,6 +22,8 @@ public class CommunityFrame extends JFrame implements ActionListener {
     JLabel notificationLabel = new JLabel("Notifications (4)");
     JTextArea notificationArea = new JTextArea("- Friend Requests (1)\n\n" + "- 3 People interacted with your post (3 hr. ago)");
     JButton backButton = new JButton("Back");
+    JPanel postPanel = new JPanel(new BorderLayout());
+    JTextArea writePostArea = new JTextArea();
 
     //Constructor to set window size and elements
     CommunityFrame() {
@@ -73,7 +75,9 @@ public class CommunityFrame extends JFrame implements ActionListener {
         communityFrame.add(newsFeedArea);
         communityFrame.add(notificationLabel);
         communityFrame.add(notificationArea);
+        communityFrame.add(postPanel,BorderLayout.CENTER);
     }
+
 
     //declare actionEvents for necessary elements
     public void addActionEvent() {
@@ -94,22 +98,25 @@ public class CommunityFrame extends JFrame implements ActionListener {
             communityFrame.add(postPanel,BorderLayout.CENTER);
             postPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
             postPanel.setBackground(SettingsFrame.defaultBackground);
-            postPanel.setBounds(40,100,260,300);
-            writePostArea.setBounds(10,10,240,240);
+            postPanel.setBounds(40,100,260,250);
+            writePostArea.setBounds(10,10,240,190);
             postPanel.add(writePostArea);
             JPanel bottomPostPanel = new JPanel();
             bottomPostPanel.setBounds(40,150,260,50);
             JButton postButton = new JButton(new AbstractAction("Post") {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    JOptionPane.showMessageDialog(communityFrame,"This entry has been posted!");
-                    communityFrame.remove(postPanel);
+                    JOptionPane.showMessageDialog(communityFrame,"Item posted!");
+                    for (Component c : postPanel.getParent().getComponents()) {
+                        if (c instanceof JPanel) {
+                            c.setVisible(false);
+                        }
+                    }
+                    postPanel.getParent().remove(postPanel);
                 }
             });
-            postButton.setBounds(80,200,30,20);
             bottomPostPanel.add(postButton);
             postPanel.add(bottomPostPanel,BorderLayout.PAGE_END);
-            postPanel.setVisible(true);
         }
     }
 }
