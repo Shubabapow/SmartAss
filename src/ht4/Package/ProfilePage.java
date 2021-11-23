@@ -78,7 +78,6 @@ public class ProfilePage extends JFrame implements ActionListener {
         addActionEvent();
         editable();
 
-        System.out.println(User.age);
     }
 
     //Setting layout to null, which ends up just using the default layout
@@ -174,8 +173,7 @@ public class ProfilePage extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == updateButton){
-            String user = User.email;
-            String pwd = User.password;
+            boolean rightAge = true;
             name = nameText.getText();
             phone = phoneText.getText();
             email = emailText.getText();
@@ -185,12 +183,17 @@ public class ProfilePage extends JFrame implements ActionListener {
             cWeight = Integer.valueOf(cWeightText.getText());
             bmi = Integer.valueOf(bmiText.getText());
             gWeight = Integer.valueOf(gWeightText.getText());
-            new User(user,pwd);
             Connection conn = DBConnection.DBC();
             DBQueries queries = new DBQueries();
-            if(queries.updatingUserInfo(conn, name, phone, email, age, heightFT, heightIN, cWeight, bmi, gWeight)) {
+            if(age < 1 || age > 120){
+                rightAge = false;
+                JOptionPane.showMessageDialog(this, "Invalid age entered a valid age (1 - 120.");
+            }
+            if(queries.updatingUserInfo(conn, name, phone, email, age, heightFT, heightIN, cWeight, bmi, gWeight)
+                    && rightAge) {
                 edit = false;
                 editable();
+
             }
         }
         if(e.getSource() == editButton) {
