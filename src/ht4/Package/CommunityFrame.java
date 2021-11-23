@@ -94,7 +94,7 @@ public class CommunityFrame extends JFrame implements ActionListener {
             communityFrame.add(postPanel,BorderLayout.CENTER);
             postPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
             postPanel.setBackground(SettingsFrame.defaultBackground);
-            postPanel.setBounds(40,100,260,300);
+            postPanel.setBounds(50,100,260,260);
             writePostArea.setBounds(10,10,240,240);
             postPanel.add(writePostArea);
             JPanel bottomPostPanel = new JPanel();
@@ -103,7 +103,12 @@ public class CommunityFrame extends JFrame implements ActionListener {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     JOptionPane.showMessageDialog(communityFrame,"This entry has been posted!");
-                    communityFrame.remove(postPanel);
+                    for (Component c : postPanel.getParent().getComponents()) {
+                        if (c instanceof JPanel) {
+                            c.setVisible(false);
+                        }
+                    }
+                    postPanel.getParent().remove(postPanel);
                 }
             });
             postButton.setBounds(80,200,30,20);
