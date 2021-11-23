@@ -187,7 +187,7 @@ public class ProfilePage extends JFrame implements ActionListener {
             DBQueries queries = new DBQueries();
             if(age < 1 || age > 120){
                 rightAge = false;
-                JOptionPane.showMessageDialog(this, "Invalid age entered a valid age (1 - 120.");
+                JOptionPane.showMessageDialog(this, "Invalid age entered. Enter a valid age (1 - 120.");
             }
             if(queries.updatingUserInfo(conn, name, phone, email, age, heightFT, heightIN, cWeight, bmi, gWeight)
                     && rightAge) {
