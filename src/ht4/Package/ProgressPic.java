@@ -41,7 +41,11 @@ public class ProgressPic extends JFrame implements ActionListener{
     //Grabbing the images from the resources folder
     public String[] getImages()
     {
-        File directoryPath=new File("./Resources/ProgressPictures");
+        File directoryPath=new File("./Resources/ProgressPictures/"+User.username);
+        if(!directoryPath.exists())
+        {
+            directoryPath.mkdirs();
+        }
         String[] imagesList=directoryPath.list();
         return imagesList;
     }
@@ -49,18 +53,30 @@ public class ProgressPic extends JFrame implements ActionListener{
     public void showImage()
     {
         String [] imageList=getImages();
-        if(indexy>imageList.length-1)
+        if(imageList.length==0)
         {
-            indexy=0;
+            ImageIcon icon = new ImageIcon("./Resources/ProgressPictures/NoMore.png");
+            Image image = icon.getImage().getScaledInstance(jlPic.getWidth(), jlPic.getHeight(), Image.SCALE_SMOOTH);
+            jlPic.setIcon(new ImageIcon(image));
         }
-        else if(indexy<0)
+        else
         {
-            indexy=imageList.length-1;
+            if (indexy > imageList.length - 1)
+            {
+                indexy = imageList.length-1;
+                ImageIcon icon = new ImageIcon("./Resources/ProgressPictures/NoMore.png");
+                Image image = icon.getImage().getScaledInstance(jlPic.getWidth(), jlPic.getHeight(), Image.SCALE_SMOOTH);
+                jlPic.setIcon(new ImageIcon(image));
+            }
+
+            else
+            {
+                String imageName = imageList[indexy];
+                ImageIcon icon = new ImageIcon("./Resources/ProgressPictures/"+User.username+"/" + imageName);
+                Image image = icon.getImage().getScaledInstance(jlPic.getWidth(), jlPic.getHeight(), Image.SCALE_SMOOTH);
+                jlPic.setIcon(new ImageIcon(image));
+            }
         }
-        String imageName=imageList[indexy];
-        ImageIcon icon=new ImageIcon("./Resources/ProgressPictures/"+imageName);
-        Image image = icon.getImage().getScaledInstance(jlPic.getWidth(),jlPic.getHeight(),Image.SCALE_SMOOTH);
-        jlPic.setIcon(new ImageIcon(image));
     }
     //Setting layout to null, which ends up just using the default layout
     public void setLayoutManager() {
@@ -113,8 +129,13 @@ public class ProgressPic extends JFrame implements ActionListener{
         //Cycles the image to the left
         if(e.getSource()==previousButton)
         {
-            indexy--;
-            showImage();
+            if(indexy==0)
+                ;
+            else
+            {
+                indexy--;
+                showImage();
+            }
         }
     }
 }
