@@ -26,7 +26,8 @@ public class SettingsFrame extends JFrame implements ActionListener{
     static boolean darkThemeClicked = false; //ActionListener flag for sequential button clicking.
     static Color defaultBackground = UIManager.getColor("Panel.background");
     static String currentLanguage = "";
-    static boolean languageChanged = false;
+    static JLabel lbl = new JLabel();
+    static JPanel panel;
 
     //Creating the constructor and setting the size of the JFrame along with calling our helper methods
     SettingsFrame() {
@@ -77,13 +78,7 @@ public class SettingsFrame extends JFrame implements ActionListener{
         settingsFrame.add(dietTrackerSettingsButton);
         settingsFrame.add(logoutButton);
         settingsFrame.add(deleteAccountButton);
-        try {
-            if (languageChanged) {
-                translate((JPanel) settingsLabel.getParent(), currentLanguage, currentLanguage);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        settingsFrame.add(lbl);
     }
 
     //Adds an action listener to the buttons
@@ -121,6 +116,7 @@ public class SettingsFrame extends JFrame implements ActionListener{
             toggleNotifications();
         }
         else if (e.getSource() == changeLanguageButton) {
+            panel = (JPanel) lbl.getParent();
             JPopupMenu langMenu = new JPopupMenu("Supported Languages");
             if (currentLanguage.equals("")) {
                 currentLanguage = "en";
@@ -129,13 +125,12 @@ public class SettingsFrame extends JFrame implements ActionListener{
                 public void actionPerformed(ActionEvent ae) {
                     try {
                         if (currentLanguage.equals("ru")) {
-                            translate((JPanel) settingsLabel.getParent(),"ru","en");
+                            translate(panel,"ru","en");
                         }
                         else if (currentLanguage.equals("fr")) {
-                            translate((JPanel) settingsLabel.getParent(),"fr","en");
+                            translate(panel,"fr","en");
                         }
                         currentLanguage = "en";
-                        languageChanged = true;
                     } catch (IOException ex) {
                         ex.printStackTrace();
                     }
@@ -145,13 +140,12 @@ public class SettingsFrame extends JFrame implements ActionListener{
                 public void actionPerformed(ActionEvent ae) {
                     try {
                         if (currentLanguage.equals("ru")) {
-                            translate((JPanel) settingsLabel.getParent(),"ru","fr");
+                            translate(panel,"ru","fr");
                         }
                         else if (currentLanguage.equals("en")) {
-                            translate((JPanel) settingsLabel.getParent(),"en","fr");
+                            translate(panel,"en","fr");
                         }
                         currentLanguage = "fr";
-                        languageChanged = true;
                     } catch (IOException ex) {
                         ex.printStackTrace();
                     }
@@ -161,13 +155,12 @@ public class SettingsFrame extends JFrame implements ActionListener{
                 public void actionPerformed(ActionEvent ae) {
                     try {
                         if (currentLanguage.equals("en")) {
-                            translate((JPanel) settingsLabel.getParent(),"en","ru");
+                            translate(panel,"en","ru");
                         }
                         else if (currentLanguage.equals("fr")) {
-                            translate((JPanel) settingsLabel.getParent(),"fr","ru");
+                            translate(panel,"fr","ru");
                         }
                         currentLanguage = "ru";
-                        languageChanged = true;
                     } catch (IOException ex) {
                         ex.printStackTrace();
                     }
@@ -222,10 +215,10 @@ public class SettingsFrame extends JFrame implements ActionListener{
 
     public static void translate(JPanel panel, String langFrom, String langTo) throws IOException {
         for (Component c : panel.getComponents()) {
-            if (c instanceof JLabel && ((JLabel) c).getText() != null) {
+            if (c instanceof JLabel) {
                 ((JLabel) c).setText(Translator.translate(langFrom,langTo, ((JLabel) c).getText()));
             }
-            else if (c instanceof JButton && ((JButton) c).getText() != null) {
+            else if (c instanceof JButton) {
                 ((JButton) c).setText(Translator.translate(langFrom,langTo, ((JButton) c).getText()));
             }
             else if (c instanceof JTextField) {

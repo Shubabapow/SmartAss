@@ -11,30 +11,16 @@ public class DBQueries {
             ex.printStackTrace();
         }
     }
-    public boolean updatingUserInfo(Connection conn, String name, String phone, String email, String age, String heightFT, String heightIN, String cWeight, String bmi, String gWeight) {
+    public boolean updatingUserInfo(Connection conn, String name, String phone, String email, int age, int heightFT, int heightIN, int cWeight, int bmi, int gWeight) {
         try {
             Statement s = conn.createStatement();
-            s.executeUpdate("UPDATE Table_Login SET name = '" + name + "', phone = '" + phone + "', email = '" + email + "', age = '" + age + "', [height ft] = '" + heightFT + "', [height in] = '" + heightIN + "', [Current weight] = '" + cWeight + "', bmi = '" + bmi + "', [Goal weight] = '" + gWeight + "' WHERE id = '" + User.id + "'");
+            s.executeUpdate("UPDATE Table_Login SET name = '" + name + "', phone = '" + phone + "', email = '" + email + "', age = " + age + ", [height ft] = " + heightFT + ", [height in] = " + heightIN + ", [Current weight] = '" + cWeight + "', bmi = '" + bmi + "', [Goal weight] = '" + gWeight + "' WHERE id = '" + User.id + "'");
             return true;
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
         return false;
     }
-
-//    public String[] selectingUserInfo(Connection conn) {
-//        try {
-//            PreparedStatement st = conn.prepareStatement("SELECT * FROM Table_Login WHERE (id = '" + User.id + "')");
-//
-//            ResultSet rs = st.executeQuery();
-//            if (rs.next()) {
-//                return info;
-//            }
-//        } catch (SQLException ex) {
-//            ex.printStackTrace();
-//        }
-//        return null;
-//    }
 
     public boolean selectingUserLogin(String userN, String pwd, Connection conn) {
         try {

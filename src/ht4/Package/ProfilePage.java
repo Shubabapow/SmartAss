@@ -14,15 +14,15 @@ public class ProfilePage extends JFrame implements ActionListener {
     //instantiating all of our elements
 
     boolean edit;
-    String name;
-    String phone;
-    String email;
-    String age;
-    String heightFT;
-    String heightIN;
-    String cWeight;
-    String bmi;
-    String gWeight;
+    String name = User.name;
+    String phone = User.phone;
+    String email = User.email;
+    int age = User.age;
+    int heightFT = User.heightFT;
+    int heightIN = User.heightIN;
+    int cWeight = User.currentWeight;
+    int bmi = User.bmi;
+    int gWeight = User.goalWeight;
 
     JFrame profileFrame = new JFrame();
     JLabel titleName = new JLabel("Name:");
@@ -39,12 +39,12 @@ public class ProfilePage extends JFrame implements ActionListener {
     JTextField nameText = new JTextField(name);
     JTextField phoneText = new JTextField(phone);
     JTextField emailText = new JTextField(email);
-    JTextField ageText = new JTextField(age);
-    JTextField heightFTText = new JTextField(heightFT);
-    JTextField heightINText = new JTextField(heightIN);
-    JTextField cWeightText = new JTextField(cWeight);;
-    JTextField bmiText = new JTextField(bmi);
-    JTextField gWeightText = new JTextField(gWeight);
+    JTextField ageText = new JTextField(String.valueOf(age));
+    JTextField heightFTText = new JTextField(String.valueOf(heightFT));
+    JTextField heightINText = new JTextField(String.valueOf(heightIN));
+    JTextField cWeightText = new JTextField(String.valueOf(cWeight));;
+    JTextField bmiText = new JTextField(String.valueOf(bmi));
+    JTextField gWeightText = new JTextField(String.valueOf(gWeight));
 
     JButton exitButton = new JButton("Exit");
     JButton editButton = new JButton("edit");
@@ -72,24 +72,12 @@ public class ProfilePage extends JFrame implements ActionListener {
         profileFrame.setResizable(false);
         edit = false;
 
-        Connection conn = DBConnection.DBC();
-        DBQueries queries = new DBQueries();
-//        String[] info = queries.selectingUserInfo(conn);
-//        String name = info[0];
-//        String phone = info[1];
-//        String email = info[2];
-//        String age = info[3];
-//        String heightFT = info[4];
-//        String heightIN = info[5];
-//        String cWeight = info[6];
-//        String bmi = info[7];
-//        String gWeight = info[8];
-
         setLayoutManager();
         setLocationAndSize();
         addHomeComponentsToContainer();
         addActionEvent();
         editable();
+
     }
 
     //Setting layout to null, which ends up just using the default layout
@@ -185,22 +173,27 @@ public class ProfilePage extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == updateButton){
-
+            boolean rightAge = true;
             name = nameText.getText();
             phone = phoneText.getText();
             email = emailText.getText();
-            age = ageText.getText();
-            heightFT = heightFTText.getText();
-            heightIN = heightINText.getText();
-            cWeight = cWeightText.getText();
-            bmi = bmiText.getText();
-            gWeight = gWeightText.getText();
-
+            age = Integer.valueOf(ageText.getText());
+            heightFT = Integer.valueOf(heightFTText.getText());
+            heightIN = Integer.valueOf(heightINText.getText());
+            cWeight = Integer.valueOf(cWeightText.getText());
+            bmi = Integer.valueOf(bmiText.getText());
+            gWeight = Integer.valueOf(gWeightText.getText());
             Connection conn = DBConnection.DBC();
             DBQueries queries = new DBQueries();
-            if(queries.updatingUserInfo(conn, name, phone, email, age, heightFT, heightIN, cWeight, bmi, gWeight)) {
+            if(age < 1 || age > 120){
+                rightAge = false;
+                JOptionPane.showMessageDialog(this, "Invalid age entered. Enter a valid age (1 - 120.");
+            }
+            if(queries.updatingUserInfo(conn, name, phone, email, age, heightFT, heightIN, cWeight, bmi, gWeight)
+                    && rightAge) {
                 edit = false;
                 editable();
+
             }
         }
         if(e.getSource() == editButton) {
