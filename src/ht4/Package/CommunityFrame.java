@@ -1,5 +1,7 @@
-/*Community provides a social media aspect that allows
-users to post and connect with friends.*/
+/* This is the community page.
+ * This class will show the user recommendations based on what other people are doing.
+ * Right now it is just all hard coded for concept, but we would like for it to connect to an API of some sort
+ * and show related topics. Such as articles and recipes  */
 package ht4.Package;
 
 import javax.swing.*;

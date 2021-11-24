@@ -1,4 +1,6 @@
-/* This is where we will connect to a Database */
+/* This is the Diet Plan Page.
+ * This page allows users to enter what they have eaten for that day of the week.
+ * We aren't currently connected to a DB so until we get connected we won't be able to save the data. */
 package ht4.Package;
 import java.sql.Connection;
 import java.sql.DriverManager;

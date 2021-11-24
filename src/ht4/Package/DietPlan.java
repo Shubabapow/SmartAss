@@ -1,4 +1,6 @@
-/*  */
+/* This is the Diet Plan Page.
+ * This page allows users to enter what they have eaten for that day of the week.
+ * We aren't currently connected to a DB so until we get connected we won't be able to save the data. */
 package ht4.Package;
 
 import javax.swing.*;
@@ -19,7 +21,6 @@ import java.util.Scanner;
 public class DietPlan extends JFrame implements ActionListener {
     //instantiating all of our elements
     JFrame dietFrame = new JFrame();
-    //JPanel DietPlan = new JPanel(Boolean.parseBoolean("DIETPLAN: "));
     JButton backButton = new JButton("Back");
 
     JComboBox<String> monList;
@@ -30,7 +31,6 @@ public class DietPlan extends JFrame implements ActionListener {
     JComboBox<String> satList;
     JComboBox<String> sunList;
 
-    //private JList<String> itemList;
     JScrollPane monMenu;
     JScrollPane tueMenu;
     JScrollPane wedMenu;
@@ -41,13 +41,7 @@ public class DietPlan extends JFrame implements ActionListener {
 
     //array to hold labels for each day
     JLabel[] days = {new JLabel("Monday"), new JLabel("Tuesday"), new JLabel("Wednesday"), new JLabel("Thursday"), new JLabel("Friday"), new JLabel("Saturday"), new JLabel("Sunday")};
-//    JLabel Mon = new JLabel("Monday");
-//    JLabel Tue = new JLabel("Tuesday");
-//    JLabel Wed = new JLabel("Wednesday");
-//    JLabel Thu = new JLabel("Thursday");
-//    JLabel Fri = new JLabel("Friday");
-//    JLabel Sat = new JLabel("Saturday");
-//    JLabel Sun = new JLabel("Sunday");
+
     JLabel calorieGoalLabel = new JLabel("Calorie Goal: " + DietTrackerSettingsFrame.calorieGoal);
 
     JTextArea monCal = new JTextArea("Calories: ");
@@ -84,25 +78,6 @@ public class DietPlan extends JFrame implements ActionListener {
         dietFrame.setLayout(null);
     }
 
-    //Setting visible row counts in JList
-//    public void setVisibleRows() {
-//        monList.setVisibleRowCount(7);
-//        tueList.setVisibleRowCount(7);
-//        wedList.setVisibleRowCount(7);
-//        thuList.setVisibleRowCount(7);
-//        friList.setVisibleRowCount(7);
-//        satList.setVisibleRowCount(7);
-//        sunList.setVisibleRowCount(7);
-//
-//        JScrollPane monScroll = new JScrollPane(monList);
-//        JScrollPane tueScroll = new JScrollPane(tueList);
-//        JScrollPane wedScroll = new JScrollPane(wedList);
-//        JScrollPane thuScroll = new JScrollPane(thuList);
-//        JScrollPane friScroll = new JScrollPane(friList);
-//        JScrollPane satScroll = new JScrollPane(satList);
-//        JScrollPane sunScroll = new JScrollPane(sunList);
-//    }
-
     //Declares the size for the elements
     public void setLocationAndSize() {
         //DietPlan.setBounds(10, 10, 100, 30);
@@ -110,21 +85,7 @@ public class DietPlan extends JFrame implements ActionListener {
         for (int i=0; i<7; i++) {
             days[i].setBounds(10,80*i,250,25);
         }
-//        Mon.setBounds(10, 0,60,25);
-//        Tue.setBounds(10, 80,60,25);
-//        Wed.setBounds(10, 160,80,25);
-//        Thu.setBounds(10, 240,60,25);
-//        Fri.setBounds(10, 320,60,25);
-//        Sat.setBounds(10, 400,60,25);
-//        Sun.setBounds(10, 480,60,25);
 
-//        monText.setBounds(10, 25, 250, 50);
-//        tueText.setBounds(10, 105, 250, 50);
-//        wedText.setBounds(10, 185, 250, 50);
-//        thuText.setBounds(10, 265, 250, 50);
-//        friText.setBounds(10, 345, 250, 50);
-//        satText.setBounds(10, 425, 250, 50);
-//        sunText.setBounds(10, 505, 250, 50);
         try {
             monList = new JComboBox<>(fileToArray());
             tueList = new JComboBox<>(fileToArray());
@@ -133,10 +94,7 @@ public class DietPlan extends JFrame implements ActionListener {
             friList = new JComboBox<>(fileToArray());
             satList = new JComboBox<>(fileToArray());
             sunList = new JComboBox<>(fileToArray());
-            //itemList = new JList<>(fileToArray());
-            //itemList.setPreferredSize(new Dimension(10,20));
 
-            //itemList.setVisibleRowCount(3);
             monMenu = new JScrollPane(monList);
             tueMenu = new JScrollPane(tueList);
             wedMenu = new JScrollPane(wedList);
@@ -144,8 +102,6 @@ public class DietPlan extends JFrame implements ActionListener {
             friMenu = new JScrollPane(friList);
             satMenu = new JScrollPane(satList);
             sunMenu = new JScrollPane(sunList);
-            //itemList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-            //itemList.addListSelectionListener((ListSelectionListener) monCal);
 
         } catch (IOException e) {
             //itemList = new JList<>();
@@ -158,7 +114,6 @@ public class DietPlan extends JFrame implements ActionListener {
             sunList = new JComboBox<>();
         }
 
-        //itemList.setBounds(10, 25, 250, 50);
         monMenu.setBounds(10, 25, 250, 50);
         tueMenu.setBounds(10, 105, 250, 50);
         wedMenu.setBounds(10, 185, 250, 50);
@@ -178,18 +133,10 @@ public class DietPlan extends JFrame implements ActionListener {
     }
     //Adds all the elements to the JFrame
     public void addPlanComponentsToContainer() {
-        //dietFrame.add(DietPlan);
         dietFrame.add(backButton);
         for (JLabel day: days) {
             dietFrame.add(day);
         }
-//        dietFrame.add(Mon);
-//        dietFrame.add(Tue);
-//        dietFrame.add(Wed);
-//        dietFrame.add(Thu);
-//        dietFrame.add(Fri);
-//        dietFrame.add(Sat);
-//        dietFrame.add(Sun);
 
         //adds calorie goal display if enabled in settings, right justifies text along ComboBox)
         if (DietTrackerSettingsFrame.displayCalorieTotalButton.isSelected()) {
@@ -217,8 +164,6 @@ public class DietPlan extends JFrame implements ActionListener {
         dietFrame.add(friCal);
         dietFrame.add(satCal);
         dietFrame.add(sunCal);
-
-
     }
     //Adds an action listener to the buttons
     public void addActionEvent() {
@@ -234,19 +179,6 @@ public class DietPlan extends JFrame implements ActionListener {
         //monCal.append(String.valueOf(totalCalo));
 
     }
-
-//    private int getTotalCalories() {
-//        monList.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                String str = (String) itemList.getSelectedItem();
-//                String[] string = str.split(",");
-//                calories = Integer.parseInt(string[1].trim());
-//                caloSum += calories;
-//            }
-//        });
-//        return caloSum;
-//    }
 
     // This is the action of clicking on the back button.
     // It will drive the user back to Home page
@@ -328,7 +260,7 @@ public class DietPlan extends JFrame implements ActionListener {
     }
 
     private String[] fileToArray() throws IOException {
-        Path filePath = new File("FoodList.txt").toPath();
+        Path filePath = new File("C:/workspaces/SmartAss/FoodList.txt").toPath();
         Charset charset = Charset.defaultCharset();
         List<String> stringList = Files.readAllLines(filePath, charset);
         return stringList.toArray(new String[] {});

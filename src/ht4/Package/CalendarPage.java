@@ -1,4 +1,6 @@
-/*  */
+/* This is the Calendar page. This class current has an accurate calendar in it,
+ and allows the user to navigate through it. We would like to make it so the user is able to schedule stuff on the
+  calendar*/
 package ht4.Package;
 
 import javax.swing.*;

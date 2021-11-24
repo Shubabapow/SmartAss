@@ -1,5 +1,6 @@
 /* This is the user journal page.
-This is the page where the user can log their progress and their motivation. */
+This is the page where the user can log their progress and their motivation, and date.
+ Once we get connected to a DB we will be able to store this data. */
 package ht4.Package;
 
 import javax.swing.*;

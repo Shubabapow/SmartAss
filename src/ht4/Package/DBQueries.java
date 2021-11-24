@@ -1,8 +1,10 @@
+/*This is the class where we will run most of our queries*/
 package ht4.Package;
 
 import java.sql.*;
 
 public class DBQueries {
+    //Creating user query
     public void creatingUser(String userN, String pwd, Connection conn) {
         try {
             Statement s = conn.createStatement();
@@ -11,6 +13,7 @@ public class DBQueries {
             ex.printStackTrace();
         }
     }
+    //Updating user query
     public boolean updatingUserInfo(Connection conn, String name, String phone, String email, int age, int heightFT, int heightIN, int cWeight, int bmi, int gWeight) {
         try {
             Statement s = conn.createStatement();
@@ -21,7 +24,7 @@ public class DBQueries {
         }
         return false;
     }
-
+    //Selecing user query
     public boolean selectingUserLogin(String userN, String pwd, Connection conn) {
         try {
             PreparedStatement st = conn.prepareStatement("SELECT * FROM Smartass.dbo.Table_Login WHERE (username = '" + userN + "' AND password = '" + pwd + "')");

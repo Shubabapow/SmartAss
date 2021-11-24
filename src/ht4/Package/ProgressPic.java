@@ -1,5 +1,6 @@
-/* This page is the progress page which will allow the user to upload progress pictures and track their physical progress
-* over time. */
+/* This page is the progress page.
+ Which will allow the user to upload progress pictures and track their physical progress over time.
+  Currently the page allows the user to cycle through multiple pictures.*/
 package ht4.Package;
 
 import javax.swing.*;
@@ -11,7 +12,7 @@ import java.io.File;
 public class ProgressPic extends JFrame implements ActionListener{
     //instantiating all of our elements
     JFrame progressPic = new JFrame();
-    ImageIcon img = new ImageIcon(("./Resources/healtech1-removebg-preview.png"));
+    ImageIcon img = new ImageIcon(("C:/workspaces/SmartAss/src/main/resources/healtech1-removebg-preview.png"));
     JLabel jlPic = new JLabel(img);
     int indexy=0;
     private JButton homeButton = new JButton("Home");
@@ -41,7 +42,7 @@ public class ProgressPic extends JFrame implements ActionListener{
     //Grabbing the images from the resources folder
     public String[] getImages()
     {
-        File directoryPath=new File("./Resources/ProgressPictures/"+User.username);
+        File directoryPath=new File("C:/workspaces/SmartAss/Resources/ProgressPictures/"+User.username);
         if(!directoryPath.exists())
         {
             directoryPath.mkdirs();
@@ -55,7 +56,7 @@ public class ProgressPic extends JFrame implements ActionListener{
         String [] imageList=getImages();
         if(imageList.length==0)
         {
-            ImageIcon icon = new ImageIcon("./Resources/ProgressPictures/NoMore.png");
+            ImageIcon icon = new ImageIcon("C:/workspaces/SmartAss/Resources/ProgressPictures/NoMore.png");
             Image image = icon.getImage().getScaledInstance(jlPic.getWidth(), jlPic.getHeight(), Image.SCALE_SMOOTH);
             jlPic.setIcon(new ImageIcon(image));
         }
@@ -64,7 +65,7 @@ public class ProgressPic extends JFrame implements ActionListener{
             if (indexy > imageList.length - 1)
             {
                 indexy = imageList.length-1;
-                ImageIcon icon = new ImageIcon("./Resources/ProgressPictures/NoMore.png");
+                ImageIcon icon = new ImageIcon("C:/workspaces/SmartAss/Resources/ProgressPictures/NoMore.png");
                 Image image = icon.getImage().getScaledInstance(jlPic.getWidth(), jlPic.getHeight(), Image.SCALE_SMOOTH);
                 jlPic.setIcon(new ImageIcon(image));
             }
@@ -72,7 +73,7 @@ public class ProgressPic extends JFrame implements ActionListener{
             else
             {
                 String imageName = imageList[indexy];
-                ImageIcon icon = new ImageIcon("./Resources/ProgressPictures/"+User.username+"/" + imageName);
+                ImageIcon icon = new ImageIcon("C:/workspaces/SmartAss/Resources/ProgressPictures/"+User.username+"/" + imageName);
                 Image image = icon.getImage().getScaledInstance(jlPic.getWidth(), jlPic.getHeight(), Image.SCALE_SMOOTH);
                 jlPic.setIcon(new ImageIcon(image));
             }

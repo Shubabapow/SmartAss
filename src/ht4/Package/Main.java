@@ -1,4 +1,5 @@
-/* This is the main method that will start the program */
+/* This is the main method that will start the program
+ * This class when ran should start the project and open the LoginFrame*/
 package ht4.Package;
 
 import javax.swing.*;

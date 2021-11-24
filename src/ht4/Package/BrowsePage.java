@@ -1,5 +1,6 @@
 /* This is the browse page.
-* This page will allow users to easily access all components in the application. */
+ * This page will allow users to access all pages in the application.
+ * The functionality of this class is to have a single location where most of the pages are accessible from */
 
 package ht4.Package;
 

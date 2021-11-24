@@ -13,13 +13,15 @@ sourceSets {
         java {
             srcDirs = ['src']
         }
+//        resources {
+//            srcDirs 'src/main/resources'
+//        }
     }
 }
 dependencies {
     compile 'junit:junit:4.12'
     // https://mvnrepository.com/artifact/com.microsoft.sqlserver/mssql-jdbc
     compile files('libs/mssql-jdbc-9.4.0.jre11.jar')
-    compile files('healtech1-removebg-preview.png')
 }
 
 jar {

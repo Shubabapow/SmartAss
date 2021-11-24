@@ -1,7 +1,6 @@
 /* This is the user profile page.
 This is where the user can see and edit their user information.
-The page will show the users profile information on open. If the user clicks on the edit profile button
-the user will be able to change their user information.*/
+This information will be stored in the DB once we get one connected.*/
 package ht4.Package;
 
 import javax.swing.*;

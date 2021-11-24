@@ -1,5 +1,7 @@
 /* This is the settings page.
-this is where the user can change the settings for their application */
+this is where the user can change the settings for their application.
+ Currently we have some simulations for notifications on and off, and dark mode.
+*/
 package ht4.Package;
 
 import javax.swing.*;
@@ -14,7 +16,7 @@ public class SettingsFrame extends JFrame implements ActionListener{
     JFrame settingsFrame = new JFrame();
     static JLabel settingsLabel = new JLabel("Settings");
     JButton backButton = new JButton("Back");
-    JButton profileButton = new JButton(new ImageIcon("./Resources/profile-icon.png"));
+    JButton profileButton = new JButton(new ImageIcon("C:/workspaces/SmartAss/Resources/profile-icon.png"));
     JLabel editProfileLabel = new JLabel("Edit Profile");
     JButton darkThemeButton = new JButton("Dark Theme");
     JButton changeLanguageButton = new JButton("Change Language");

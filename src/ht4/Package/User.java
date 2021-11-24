@@ -1,4 +1,4 @@
-//user class to store current user in order to update info or delete account
+//user class to create user object which will store current user in order to update info or delete account
 package ht4.Package;
 
 import java.sql.*;

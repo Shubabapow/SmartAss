@@ -1,3 +1,4 @@
+/*Translator class, where we pull from a translator API and change the language of the app */
 package ht4.Package;
 
 import java.io.BufferedReader;
