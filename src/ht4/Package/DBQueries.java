@@ -6,7 +6,7 @@ public class DBQueries {
     public void creatingUser(String userN, String pwd, Connection conn) {
         try {
             Statement s = conn.createStatement();
-            s.executeUpdate("INSERT INTO Table_Login (username, password) VALUES ('" + userN + "','" + pwd + "')");
+            s.executeUpdate("INSERT INTO Smartass.dbo.Table_Login (username, password) VALUES ('" + userN + "','" + pwd + "')");
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
@@ -14,7 +14,7 @@ public class DBQueries {
     public boolean updatingUserInfo(Connection conn, String name, String phone, String email, int age, int heightFT, int heightIN, int cWeight, int bmi, int gWeight) {
         try {
             Statement s = conn.createStatement();
-            s.executeUpdate("UPDATE Table_Login SET name = '" + name + "', phone = '" + phone + "', email = '" + email + "', age = " + age + ", [height ft] = " + heightFT + ", [height in] = " + heightIN + ", [Current weight] = '" + cWeight + "', bmi = '" + bmi + "', [Goal weight] = '" + gWeight + "' WHERE id = '" + User.id + "'");
+            s.executeUpdate("UPDATE Smartass.dbo.Table_Login SET name = '" + name + "', phone = '" + phone + "', email = '" + email + "', age = " + age + ", [height ft] = " + heightFT + ", [height in] = " + heightIN + ", [Current weight] = '" + cWeight + "', bmi = '" + bmi + "', [Goal weight] = '" + gWeight + "' WHERE id = '" + User.id + "'");
             return true;
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -24,7 +24,7 @@ public class DBQueries {
 
     public boolean selectingUserLogin(String userN, String pwd, Connection conn) {
         try {
-            PreparedStatement st = conn.prepareStatement("SELECT * FROM Table_Login WHERE (username = '" + userN + "' AND password = '" + pwd + "')");
+            PreparedStatement st = conn.prepareStatement("SELECT * FROM Smartass.dbo.Table_Login WHERE (username = '" + userN + "' AND password = '" + pwd + "')");
             ResultSet rs = st.executeQuery();
             if (rs.next()) {
                 return true;
@@ -40,7 +40,7 @@ public class DBQueries {
         int numDeleted = 0;
         try {
             Statement st = conn.createStatement();
-            numDeleted = st.executeUpdate("DELETE FROM Table_Login WHERE (id = '" + userID + "')");
+            numDeleted = st.executeUpdate("DELETE FROM Smartass.dbo.Table_Login WHERE (id = '" + userID + "')");
         } catch (SQLException ex) {
             ex.printStackTrace();
         }

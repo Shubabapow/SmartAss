@@ -333,14 +333,5 @@ public class DietPlan extends JFrame implements ActionListener {
         List<String> stringList = Files.readAllLines(filePath, charset);
         return stringList.toArray(new String[] {});
     }
-
-
-    //Test single frame
-    public static void main(String[] args) {
-        DietPlan frame = new DietPlan();
-        frame.setBounds(10, 10, 370, 600);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setVisible(true);
-    }
 }
 

@@ -205,8 +205,4 @@ public class ProfilePage extends JFrame implements ActionListener {
             new SettingsFrame();
         }
     }
-
-    public static void main(String[] args) {
-        new ProfilePage();
-    }
 }

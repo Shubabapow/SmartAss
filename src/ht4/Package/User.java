@@ -21,7 +21,7 @@ public class User {
     //User object is created from searching the database entry that matches the given username and password.
     public User(String userName, String pwd) {
         try {
-            ResultSet rs = connection.prepareStatement("SELECT * FROM Table_Login WHERE (username = '" + userName + "' AND password = '" + pwd + "')").executeQuery();
+            ResultSet rs = connection.prepareStatement("SELECT * FROM Smartass.dbo.Table_Login WHERE (username = '" + userName + "' AND password = '" + pwd + "')").executeQuery();
             while(rs.next()) {
                 id = rs.getInt(1);
                 username = userName;

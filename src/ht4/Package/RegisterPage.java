@@ -128,10 +128,6 @@ public class RegisterPage extends JFrame implements ActionListener {
             }
         }
     }
-    public static void main(String[] a) {
-        new RegisterPage();
-
-    }
 }
 
 

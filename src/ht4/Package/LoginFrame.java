@@ -19,7 +19,7 @@ public class LoginFrame extends JFrame implements ActionListener {
     JCheckBox showPassword = new JCheckBox("Show Password");
 
     //Grabbing image from folder and making it into a JLabel
-    ImageIcon img = new ImageIcon(("./Resources/healtech1-removebg-preview.png"));
+    ImageIcon img = new ImageIcon(("./build/libshealtech1-removebg-preview.png"));
     JLabel jlPic = new JLabel(img);
 
     //Creating the constructor and setting the size of the JFrame along with calling our helper methods
@@ -120,10 +120,6 @@ public class LoginFrame extends JFrame implements ActionListener {
             }
 
         }
-    }
-    public static void main(String[] a) {
-        new LoginFrame();
-
     }
 }
 

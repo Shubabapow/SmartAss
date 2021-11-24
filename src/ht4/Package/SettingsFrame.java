@@ -151,7 +151,7 @@ public class SettingsFrame extends JFrame implements ActionListener{
                     }
                 }
             }));
-            langMenu.add(new JMenuItem(new AbstractAction("Russian (Pусский)") {
+            langMenu.add(new JMenuItem(new AbstractAction("Russian") {
                 public void actionPerformed(ActionEvent ae) {
                     try {
                         if (currentLanguage.equals("en")) {
