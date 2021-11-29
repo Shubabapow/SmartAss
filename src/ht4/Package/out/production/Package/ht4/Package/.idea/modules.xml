@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/SmartAss.iml" filepath="$PROJECT_DIR$/SmartAss.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Package.iml" filepath="$PROJECT_DIR$/Package.iml" />
     </modules>
   </component>
 </project>

@@ -1,4 +1,5 @@
-/* This is the home page of the project. This is where the user can get to the settings page and the browse page.*/
+/* This is the home page of the project.
+This is where the user can get to the settings page and the browse page, and logout of their account.*/
 package ht4.Package;
 
 import javax.swing.*;
@@ -15,7 +16,7 @@ public class FrameHome extends JFrame implements ActionListener {
     private JButton settingsButton = new JButton("Settings");
 
     //Grabbing image from folder and making it into a JLabel
-    ImageIcon img = new ImageIcon(("./Resources/healtech1-removebg-preview.png"));
+    ImageIcon img = new ImageIcon(("C:/workspaces/SmartAss/src/main/resources/healtech1-removebg-preview.png"));
     JLabel jlPic = new JLabel(img);
 
     //Creating the constructor and setting the size of the JFrame along with calling our helper methods

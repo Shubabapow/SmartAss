@@ -1,11 +1,16 @@
-/*Community provides a social media aspect that allows
-users to post and connect with friends.*/
+/* This is the community page.
+ * This class will show the user recommendations based on what other people are doing.
+ * Right now it is just all hard coded for concept, but we would like for it to connect to an API of some sort
+ * and show related topics. Such as articles and recipes  */
 package ht4.Package;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.net.*;
+import java.net.http.*;
 
 public class CommunityFrame extends JFrame implements ActionListener {
     //declare necessary content within frame
@@ -84,6 +89,34 @@ public class CommunityFrame extends JFrame implements ActionListener {
         if (e.getSource() == backButton) {
             communityFrame.dispose();
             new BrowsePage();
+        }
+        else if (e.getSource() == createPostButton) {
+            JPanel postPanel = new JPanel(new BorderLayout());
+            JTextArea writePostArea = new JTextArea();
+            communityFrame.add(postPanel,BorderLayout.CENTER);
+            postPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+            postPanel.setBackground(SettingsFrame.defaultBackground);
+            postPanel.setBounds(50,100,260,260);
+            writePostArea.setBounds(10,10,240,240);
+            postPanel.add(writePostArea);
+            JPanel bottomPostPanel = new JPanel();
+            bottomPostPanel.setBounds(40,150,260,50);
+            JButton postButton = new JButton(new AbstractAction("Post") {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    JOptionPane.showMessageDialog(communityFrame,"This entry has been posted!");
+                    for (Component c : postPanel.getParent().getComponents()) {
+                        if (c instanceof JPanel) {
+                            c.setVisible(false);
+                        }
+                    }
+                    postPanel.getParent().remove(postPanel);
+                }
+            });
+            postButton.setBounds(80,200,30,20);
+            bottomPostPanel.add(postButton);
+            postPanel.add(bottomPostPanel,BorderLayout.PAGE_END);
+            postPanel.setVisible(true);
         }
     }
 }

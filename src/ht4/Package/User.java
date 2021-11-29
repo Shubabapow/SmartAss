@@ -1,4 +1,4 @@
-//user class to store current user in order to update info or delete account
+//user class to create user object which will store current user in order to update info or delete account
 package ht4.Package;
 
 import java.sql.*;
@@ -21,21 +21,21 @@ public class User {
     //User object is created from searching the database entry that matches the given username and password.
     public User(String userName, String pwd) {
         try {
-            ResultSet rs = connection.prepareStatement("SELECT * FROM Table_Login WHERE (username = '" + userName + "' AND password = '" + pwd + "')").executeQuery();
-            rs.next();
-            id = rs.getInt(1);
-            username = userName;
-            password = pwd;
-            name = rs.getString(4);
-            phone = rs.getString(5);
-            email = rs.getString(6);
-            age = rs.getInt(7);
-            heightFT = rs.getInt(8);
-            heightIN = rs.getInt(9);
-            currentWeight = rs.getInt(10);
-            bmi = rs.getInt(11);
-            goalWeight = rs.getInt(12);
-
+            ResultSet rs = connection.prepareStatement("SELECT * FROM Smartass.dbo.Table_Login WHERE (username = '" + userName + "' AND password = '" + pwd + "')").executeQuery();
+            while(rs.next()) {
+                id = rs.getInt(1);
+                username = userName;
+                password = pwd;
+                name = rs.getString(4);
+                phone = rs.getString(5);
+                email = rs.getString(6);
+                age = rs.getInt(7);
+                heightFT = rs.getInt(8);
+                heightIN = rs.getInt(9);
+                currentWeight = rs.getInt(10);
+                bmi = rs.getInt(11);
+                goalWeight = rs.getInt(12);
+            }
         } catch (SQLException ex) {
             ex.printStackTrace();
         }

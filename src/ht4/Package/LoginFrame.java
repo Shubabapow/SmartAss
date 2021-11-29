@@ -1,4 +1,6 @@
-/*  */
+/* This is the Login Page.
+This page will accept a username and password and if they match a current user it will log them into the application.
+ Currently the only username and password that we have is hard coded and it is USERNAME: joey | PASSWORD: 12345 */
 package ht4.Package;
 
 import javax.swing.*;
@@ -19,7 +21,7 @@ public class LoginFrame extends JFrame implements ActionListener {
     JCheckBox showPassword = new JCheckBox("Show Password");
 
     //Grabbing image from folder and making it into a JLabel
-    ImageIcon img = new ImageIcon(("./Resources/healtech1-removebg-preview.png"));
+    ImageIcon img = new ImageIcon(("C:/workspaces/SmartAss/src/main/resources/healtech1-removebg-preview.png"));
     JLabel jlPic = new JLabel(img);
 
     //Creating the constructor and setting the size of the JFrame along with calling our helper methods
@@ -95,7 +97,7 @@ public class LoginFrame extends JFrame implements ActionListener {
             //Query
             DBQueries queries = new DBQueries();
             if (queries.selectingUserLogin(userText, pwdText, conn)) {
-                User currentUser = new User(userText,pwdText); //used to access user's info throughout project files
+                new User(userText,pwdText);
                 frame.dispose();
                 new FrameHome();
 
@@ -120,10 +122,6 @@ public class LoginFrame extends JFrame implements ActionListener {
             }
 
         }
-    }
-    public static void main(String[] a) {
-        new LoginFrame();
-
     }
 }
 

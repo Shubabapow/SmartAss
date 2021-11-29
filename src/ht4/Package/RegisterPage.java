@@ -22,7 +22,7 @@ public class RegisterPage extends JFrame implements ActionListener {
     JButton backButton = new JButton("Back");
 
     //Grabbing image from folder and making it into a JLabel
-    ImageIcon img = new ImageIcon(("./Resources/healtech1-removebg-preview.png"));
+    ImageIcon img = new ImageIcon(("C:/workspaces/SmartAss/src/main/resources/healtech1-removebg-preview.png"));
     JLabel jlPic = new JLabel(img);
 
     //Creating the constructor and setting the size of the JFrame along with calling our helper methods
@@ -127,10 +127,6 @@ public class RegisterPage extends JFrame implements ActionListener {
                 JOptionPane.showMessageDialog(this, "Password needs to be atleast 6 characters in length");
             }
         }
-    }
-    public static void main(String[] a) {
-        new RegisterPage();
-
     }
 }
 

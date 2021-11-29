@@ -1,5 +1,6 @@
 /* This will be the step counter page.
-* This page will display the amount of steps tracked by the users phone. */
+ * This page will simulate the amount of steps tracked by the user.
+*/
 package ht4.Package;
 
 import javax.swing.*;

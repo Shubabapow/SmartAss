@@ -1,5 +1,6 @@
 /* This is the browse page.
-* This page will allow users to easily access all components in the application. */
+ * This page will allow users to access all pages in the application.
+ * The functionality of this class is to have a single location where most of the pages are accessible from */
 
 package ht4.Package;
 
@@ -7,6 +8,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 public class BrowsePage extends JFrame implements ActionListener {
     //instantiating all of our elements
