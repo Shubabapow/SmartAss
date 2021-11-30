@@ -85,7 +85,7 @@ public class DietTrackerSettingsFrame extends JFrame implements ActionListener {
                     calorieGoalSelected = true;
                     validCalGoal = true;
                 } catch (Exception ex) {
-                    JOptionPane.showInputDialog(this, "Input must be an integer. Try again.");
+                    JOptionPane.showInputDialog(this, "Input must be a positive integer. Try again.");
                 }
             }
         }
@@ -103,7 +103,7 @@ public class DietTrackerSettingsFrame extends JFrame implements ActionListener {
                         calorieGoalSelected = true;
                         validCalGoal = true;
                     } catch (Exception ex) {
-                        JOptionPane.showInputDialog(this, "Input must be an integer. Try again.");
+                        JOptionPane.showInputDialog(this, "Input must be a positive integer. Try again.");
                     }
                 }
             }
